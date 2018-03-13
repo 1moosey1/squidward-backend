@@ -8,3 +8,6 @@
 project.xcworkspace/
 xcuserdata/
 build/
+.idea/
+*.iml
+target/
