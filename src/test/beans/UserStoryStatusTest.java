@@ -1,8 +1,7 @@
-package tests;
+package beans;
 
 import org.junit.Test;
 import org.meanbean.test.BeanTester;
-import beans.UserStoryStatus;
 
 public class UserStoryStatusTest {
     @Test

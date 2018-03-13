@@ -1,13 +1,12 @@
-package tests;
+package beans;
 
 import org.junit.Test;
 import org.meanbean.test.BeanTester;
-import beans.User;
 
-public class UserTest {
+public class ProjectTest {
     @Test
-    public void testUser() {
+    public void testProject() {
         BeanTester beanTester = new BeanTester();
-        beanTester.testBean(User.class);
+        beanTester.testBean(Project.class);
     }
 }

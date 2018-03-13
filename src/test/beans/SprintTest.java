@@ -1,8 +1,7 @@
-package tests;
+package beans;
 
 import org.junit.Test;
 import org.meanbean.test.BeanTester;
-import beans.Sprint;
 
 public class SprintTest {
     @Test
