@@ -1,4 +1,4 @@
-package beans;
+package com.beans;
 
 import javax.persistence.*;
 import java.io.Serializable;

@@ -1,4 +1,4 @@
-package beans;
+package com.beans;
 
 import org.junit.Test;
 import org.meanbean.test.BeanTester;
