@@ -1,12 +1,12 @@
-package com.beans;
+package com.squidward.beans;
 
 import org.junit.Test;
 import org.meanbean.test.BeanTester;
 
-public class UserTest {
+public class SprintTest {
     @Test
-    public void testUser() {
+    public void testSprint() {
         BeanTester beanTester = new BeanTester();
-        beanTester.testBean(User.class);
+        beanTester.testBean(Sprint.class);
     }
 }

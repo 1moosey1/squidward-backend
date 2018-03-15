@@ -1,4 +1,4 @@
-package com.beans;
+package com.squidward.beans;
 
 import org.junit.Test;
 import org.meanbean.test.BeanTester;
