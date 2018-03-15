@@ -10,6 +10,5 @@ public class ProjectTest {
     public void testProject() {
         BeanTester beanTester = new BeanTester();
         beanTester.testBean(Project.class);
-        Assert.assertNotNull(null);
     }
 }
