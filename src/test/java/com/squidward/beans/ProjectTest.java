@@ -1,5 +1,6 @@
 package com.squidward.beans;
 
+import squidward.beans.Project;
 import org.junit.Assert;
 import org.junit.Test;
 import org.meanbean.test.BeanTester;
@@ -9,6 +10,5 @@ public class ProjectTest {
     public void testProject() {
         BeanTester beanTester = new BeanTester();
         beanTester.testBean(Project.class);
-        Assert.assertNotNull(null);
     }
 }
