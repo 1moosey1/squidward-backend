@@ -34,7 +34,6 @@
         </dependency>
 
         <!--unit testing dependencies-->
-
         <dependency>
             <groupId>org.meanbean</groupId>
             <artifactId>meanbean</artifactId>

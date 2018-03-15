@@ -7,12 +7,12 @@
       <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/Controllers/Login.java" afterPath="$PROJECT_DIR$/src/main/java/com/squidward/controllers/Login.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beans/Project.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beans/ProjectUser.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beans/Sprint.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beans/User.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beans/UserStory.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beans/UserStoryStatus.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beans/Project.java" afterPath="$PROJECT_DIR$/src/main/java/com/squidward/beans/Project.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beans/ProjectUser.java" afterPath="$PROJECT_DIR$/src/main/java/com/squidward/beans/ProjectUser.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beans/Sprint.java" afterPath="$PROJECT_DIR$/src/main/java/com/squidward/beans/Sprint.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beans/User.java" afterPath="$PROJECT_DIR$/src/main/java/com/squidward/beans/User.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beans/UserStory.java" afterPath="$PROJECT_DIR$/src/main/java/com/squidward/beans/UserStory.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beans/UserStoryStatus.java" afterPath="$PROJECT_DIR$/src/main/java/com/squidward/beans/UserStoryStatus.java" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" />
       <change beforePath="$PROJECT_DIR$/src/test/beans/ProjectTest.java" afterPath="$PROJECT_DIR$/src/test/com/squidward/beans/ProjectTest.java" />
       <change beforePath="$PROJECT_DIR$/src/test/beans/ProjectUserTest.java" afterPath="$PROJECT_DIR$/src/test/com/squidward/beans/ProjectUserTest.java" />
@@ -89,11 +89,11 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="638" />
-    <option name="y" value="102" />
-    <option name="width" value="1364" />
-    <option name="height" value="764" />
+  <component name="ProjectFrameBounds" extendedState="4">
+    <option name="x" value="683" />
+    <option name="y" value="24" />
+    <option name="width" value="683" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -356,7 +356,7 @@
       <workItem from="1521038495895" duration="245000" />
       <workItem from="1521038761739" duration="1617000" />
       <workItem from="1521040771335" duration="3278000" />
-      <workItem from="1521082606614" duration="2652000" />
+      <workItem from="1521082606614" duration="3109000" />
     </task>
     <servers />
   </component>
@@ -366,7 +366,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11387000" />
+    <option name="totallyTimeSpent" value="11844000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -378,7 +378,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-4" width="1366" height="772" extended-state="6" />
+    <frame x="683" y="24" width="683" height="744" extended-state="4" />
     <layout>
       <window_info id="TODO" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968238" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -390,10 +390,10 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47744945" sideWeight="0.4969697" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.6718507" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.702439" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22954546" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47566718" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
