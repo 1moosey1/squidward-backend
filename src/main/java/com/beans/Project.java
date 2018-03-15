@@ -1,4 +1,4 @@
-package squidward.beans;
+package com.beans;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,10 +10,10 @@ public class Project implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="project_id")
-    private int projectId;
+    private int id;
 
     @Column(name="project_name")
-    private String projectName;
+    private String name;
 
     @Column(name="start_date")
     private Date startDate;
@@ -21,24 +21,28 @@ public class Project implements Serializable {
     @Column(name="end_date")
     private Date endDate;
 
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="owner")
+    private User owner;
+
     public Project() {
         super();
     }
 
-    public int getProjectId() {
-        return projectId;
+    public int getId() {
+        return id;
     }
 
-    public void setProjectId(int projectId) {
-        this.projectId = projectId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getProjectName() {
-        return projectName;
+    public String getName() {
+        return name;
     }
 
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Date getStartDate() {
@@ -56,4 +60,8 @@ public class Project implements Serializable {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
+    public User getOwner() { return owner; }
+
+    public void setOwner(User owner) { this.owner = owner; }
 }

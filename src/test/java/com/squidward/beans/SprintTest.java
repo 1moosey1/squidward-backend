@@ -1,6 +1,6 @@
 package com.squidward.beans;
 
-import squidward.beans.Sprint;
+import com.beans.Sprint;
 import org.junit.Test;
 import org.meanbean.test.BeanTester;
 

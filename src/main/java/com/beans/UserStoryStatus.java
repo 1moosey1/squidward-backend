@@ -1,4 +1,4 @@
-package squidward.beans;
+package com.beans;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -6,16 +6,10 @@ import java.io.Serializable;
 @Entity
 @Table(name="user_story_status")
 public class UserStoryStatus implements Serializable {
-    private enum StatusType {
-        TO_DO,
-        IN_PROGRESS,
-        DONE
-    }
-
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="uss_id")
-    private int ussId;
+    private int id;
 
     @Column(name="status_type")
     private StatusType statusType;
@@ -24,12 +18,12 @@ public class UserStoryStatus implements Serializable {
         super();
     }
 
-    public int getUssId() {
-        return ussId;
+    public int getId() {
+        return id;
     }
 
-    public void setUssId(int ussId) {
-        this.ussId = ussId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public StatusType getStatusType() {

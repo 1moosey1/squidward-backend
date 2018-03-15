@@ -1,4 +1,4 @@
-package squidward.beans;
+package com.beans;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,11 +10,11 @@ public class UserStory implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="us_id")
-    private int usId;
+    private int id;
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="uss_id")
-    private int ussId;
+    private UserStoryStatus status;
 
     @Column(name="story")
     private String story;
@@ -36,26 +36,26 @@ public class UserStory implements Serializable {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="sprint_id")
-    private int sprintId;
+    private Sprint sprint;
 
     public UserStory() {
         super();
     }
 
-    public int getUsId() {
-        return usId;
+    public int getId() {
+        return id;
     }
 
-    public void setUsId(int usId) {
-        this.usId = usId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getUssId() {
-        return ussId;
+    public UserStoryStatus getStatus() {
+        return status;
     }
 
-    public void setUssId(int ussId) {
-        this.ussId = ussId;
+    public void setStatus(UserStoryStatus status) {
+        this.status = status;
     }
 
     public String getStory() {
@@ -106,11 +106,11 @@ public class UserStory implements Serializable {
         this.doneDate = doneDate;
     }
 
-    public int getSprintId() {
-        return sprintId;
+    public Sprint getSprint() {
+        return sprint;
     }
 
-    public void setSprintId(int sprintId) {
-        this.sprintId = sprintId;
+    public void setSprint(Sprint sprint) {
+        this.sprint = sprint;
     }
 }

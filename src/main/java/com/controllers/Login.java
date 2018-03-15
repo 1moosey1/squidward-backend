@@ -1,4 +1,4 @@
-package squidward.controllers;
+package com.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

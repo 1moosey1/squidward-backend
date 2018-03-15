@@ -1,6 +1,6 @@
 package com.squidward.beans;
 
-import squidward.beans.UserStoryStatus;
+import com.beans.UserStoryStatus;
 import org.junit.Test;
 import org.meanbean.test.BeanTester;
 
