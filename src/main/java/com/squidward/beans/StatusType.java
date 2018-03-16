@@ -1,4 +1,4 @@
-package com.beans;
+package com.squidward.beans;
 
 public enum StatusType {
     TO_DO,

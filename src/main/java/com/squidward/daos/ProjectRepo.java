@@ -1,6 +1,6 @@
-package com.daos;
+package com.squidward.daos;
 
-import com.beans.Project;
+import com.squidward.beans.Project;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
