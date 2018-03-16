@@ -1,7 +1,4 @@
-language: java
-branches:
-  only:
-    - master
+language: javagit co
 deploy:
   provider: heroku
     api_key: deploy-key
