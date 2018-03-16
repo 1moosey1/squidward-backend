@@ -39,10 +39,9 @@
 
         <!-- unit testing dependencies -->
         <dependency>
-            <groupId>org.meanbean</groupId>
-            <artifactId>meanbean</artifactId>
-            <version>2.0.3</version>
-            <scope>test</scope>
+            <groupId>net.sf.beanrunner</groupId>
+            <artifactId>beanrunner</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
         <!--hibernate dependencies-->

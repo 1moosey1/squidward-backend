@@ -12,7 +12,7 @@ public class UserStoryStatus implements Serializable {
     private int id;
 
     @Column(name="status_type")
-    private StatusType statusType;
+    private String statusType;
 
     public UserStoryStatus() {
         super();
@@ -26,11 +26,11 @@ public class UserStoryStatus implements Serializable {
         this.id = id;
     }
 
-    public StatusType getStatusType() {
+    public String getStatusType() {
         return statusType;
     }
 
-    public void setStatusType(StatusType statusType) {
+    public void setStatusType(String statusType) {
         this.statusType = statusType;
     }
 }
