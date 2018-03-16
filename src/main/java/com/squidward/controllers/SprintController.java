@@ -21,9 +21,7 @@ public class SprintController {
     }
 
     @RequestMapping(value = "/sprint/new", method = RequestMethod.POST)
-    public String addSprint(@RequestParam("sprint_number") int sprintNumber,
-                            @RequestParam("projectID") int projectID,
-                            @RequestParam("release") boolean release) {
+    public String addSprint(@RequestBody Sprint sprint) {
 
         return "Sprint successfully added";
     }

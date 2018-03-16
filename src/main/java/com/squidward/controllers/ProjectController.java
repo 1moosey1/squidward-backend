@@ -25,10 +25,7 @@ public class ProjectController {
     }
 
     @RequestMapping(value = "/projects/new", method = RequestMethod.POST)
-    public String addProject(@RequestParam("name") String name,
-                             @RequestParam("start_date") Date startDate,
-                             @RequestParam("end_date") Date endDate,
-                             @RequestParam("Owner") int ownerID) {
+    public String addProject(@RequestBody Project project) {
         //TODO: Need Service to add the project
 
         return "Project Successfully added";
