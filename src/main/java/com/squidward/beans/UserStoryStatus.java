@@ -1,4 +1,4 @@
-package com.beans;
+package com.squidward.beans;
 
 import javax.persistence.*;
 import java.io.Serializable;
