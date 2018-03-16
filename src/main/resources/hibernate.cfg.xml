@@ -19,13 +19,13 @@
         <!-- DEV/TEST ONLY -->
 
 
-        <!--add your squidward.com.squidward.beans here!-->
-		<mapping class="squidward.com.squidward.beans.Project"/>
-		<mapping class="squidward.com.squidward.beans.ProjectUser"/>
-		<mapping class="squidward.com.squidward.beans.Sprint"/>
-		<mapping class="squidward.com.squidward.beans.User"/>
-		<mapping class="squidward.com.squidward.beans.UserStory"/>
-		<mapping class="squidward.com.squidward.beans.UserStoryStatus"/>
+        <!--add your squidward.com.com.beans here!-->
+		<mapping class="squidward.com.com.beans.Project"/>
+		<mapping class="squidward.com.com.beans.ProjectUser"/>
+		<mapping class="squidward.com.com.beans.Sprint"/>
+		<mapping class="squidward.com.com.beans.User"/>
+		<mapping class="squidward.com.com.beans.UserStory"/>
+		<mapping class="squidward.com.com.beans.UserStoryStatus"/>
 
     </session-factory>
 </hibernate-configuration>

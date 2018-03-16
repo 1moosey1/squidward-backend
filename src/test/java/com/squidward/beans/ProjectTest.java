@@ -1,7 +1,5 @@
 package com.squidward.beans;
 
-import squidward.beans.Project;
-import org.junit.Assert;
 import org.junit.Test;
 import org.meanbean.test.BeanTester;
 

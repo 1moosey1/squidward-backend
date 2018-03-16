@@ -1,6 +1,5 @@
 package com.squidward.beans;
 
-import squidward.beans.User;
 import org.junit.Test;
 import org.meanbean.test.BeanTester;
 

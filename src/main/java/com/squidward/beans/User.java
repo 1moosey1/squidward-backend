@@ -1,4 +1,4 @@
-package squidward.beans;
+package com.squidward.beans;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,7 +9,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="user_id")
-    private int userId;
+    private int id;
 
     @Column(name="email")
     private String email;
@@ -18,12 +18,10 @@ public class User implements Serializable {
         super();
     }
 
-    public int getUserId() {
-        return userId;
-    }
+    public int getId() { return id; }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEmail() {
