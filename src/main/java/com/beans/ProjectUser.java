@@ -9,13 +9,13 @@ public class ProjectUser implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="project_user_id")
-    private int projectUserId;
+    private int id;
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="project_id")
-    private int projectId;
+    private Project project;
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id")
-    private int userId;
+    private User user;
 }

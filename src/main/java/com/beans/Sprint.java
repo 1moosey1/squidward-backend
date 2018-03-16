@@ -9,44 +9,40 @@ public class Sprint implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="sprint_id")
-    private int sprintId;
+    private int id;
 
     @Column(name="sprint_number")
-    private int sprintNumber;
+    private int number;
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="project_id")
-    private int projectId;
+    private Project project;
 
     @Column(name="release")
     private boolean release;
 
-    public Sprint() {
-        super();
+    public Sprint() { super(); }
+
+    public int getId() { return id; }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getSprintId() {
-        return sprintId;
+    public int getNumber() {
+        return number;
     }
 
-    public void setSprintId(int sprintId) {
-        this.sprintId = sprintId;
+    public void setNumber(int number) {
+        this.number = number;
     }
 
-    public int getSprintNumber() {
-        return sprintNumber;
+    public Project getProject() {
+        return project;
     }
 
-    public void setSprintNumber(int sprintNumber) {
-        this.sprintNumber = sprintNumber;
-    }
-
-    public int getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(int projectId) {
-        this.projectId = projectId;
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     public boolean isRelease() {
