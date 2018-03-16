@@ -1,0 +1,4 @@
+spring.datasource.url=jdbc:postgresql://squidward.cvpnvyccfzpf.us-east-2.rds.amazonaws.com
+spring.datasource.username=squidward
+spring.datasource.password=squidward
+spring.datasource.driver-class-name=org.postgresql.Driver
