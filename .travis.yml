@@ -1,4 +1,4 @@
-language: javagit co
+language: java
 deploy:
   provider: heroku
     api_key: deploy-key
