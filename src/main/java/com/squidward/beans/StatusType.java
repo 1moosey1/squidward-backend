@@ -1,7 +1,19 @@
 package com.squidward.beans;
 
 public enum StatusType {
-    TO_DO,
-    IN_PROGRESS,
-    DONE
+
+    TODO("TODO"),
+    IN_PROGRESS("IN PROGRESS"),
+    DONE("DONE");
+
+    private final String name;
+
+    StatusType(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
