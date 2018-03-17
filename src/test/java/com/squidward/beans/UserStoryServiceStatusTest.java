@@ -1,13 +1,12 @@
 package com.squidward.beans;
 
-import com.beans.UserStoryStatus;
+import net.sf.beanrunner.BeanRunner;
 import org.junit.Test;
-import org.meanbean.test.BeanTester;
 
 public class UserStoryServiceStatusTest {
     @Test
-    public void testUserStoryStatus() {
-        BeanTester beanTester = new BeanTester();
-        beanTester.testBean(UserStoryStatus.class);
+    public void testUserStoryStatus() throws Exception {
+        BeanRunner beanRunner = new BeanRunner();
+        beanRunner.testBean(new UserStoryStatus());
     }
 }
