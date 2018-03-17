@@ -4,14 +4,17 @@ import com.beans.Project;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 
-import org.junit.runners.Parameterized;
+
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 
 import static org.junit.Assert.*;
 
+@RunWith(JUnitParamsRunner.class)
 public class ProjectRepoTest {
 
     @Autowired
@@ -21,13 +24,9 @@ public class ProjectRepoTest {
    private static ProjectRepo projectrepo;
 
     @Test
-    public void findAll() {
-
-
-        
+     public void findAll() {
         Project project = (Project) projectrepo.findAll();
         assertNotNull(projectrepo.findAll());
-
     }
 
     @Test
@@ -48,18 +47,14 @@ public class ProjectRepoTest {
     }
 
 
-
-
     @Test
-    @RunWith(JUnitParamsRunner.class)
-    public void findById(int id) {
+    public void findById() {
         int search = 1;
-        Project project = projectrepo.findById(search);
-        assertEquals(projectrepo.findById(1).toString(), project.toString());
+        System.out.println(p);
+        projectrepo.findById(search);
+       // Project project = projectrepo.findById(search);
+      //  assertEquals(projectrepo.findById(1).toString(), project.toString());
       //  assertEquals(dao.getAddressById(1).toString(),address.toString());
-     
-
-
 
 
     }
