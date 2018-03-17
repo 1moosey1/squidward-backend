@@ -1,4 +1,4 @@
-package com.beans;
+package com.squidward.beans;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -6,17 +6,14 @@ import java.io.Serializable;
 @Entity
 @Table(name="user_story_status")
 public class UserStoryStatus implements Serializable {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="uss_id")
     private int id;
 
     @Column(name="status_type")
-    private StatusType statusType;
-
-    public UserStoryStatus() {
-        super();
-    }
+    private String statusType;
 
     public int getId() {
         return id;
@@ -26,11 +23,11 @@ public class UserStoryStatus implements Serializable {
         this.id = id;
     }
 
-    public StatusType getStatusType() {
+    public String getStatusType() {
         return statusType;
     }
 
-    public void setStatusType(StatusType statusType) {
+    public void setStatusType(String statusType) {
         this.statusType = statusType;
     }
 }

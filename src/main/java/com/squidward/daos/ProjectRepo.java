@@ -1,6 +1,6 @@
 package com.squidward.daos;
 
-import com.beans.Project;
+import com.squidward.beans.Project;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface ProjectRepo extends CrudRepository<Project, Integer> {
+
 
     //Get all Projects
     List<Project>findAll();

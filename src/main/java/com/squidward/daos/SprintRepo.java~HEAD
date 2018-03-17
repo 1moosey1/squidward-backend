@@ -1,6 +1,6 @@
 package com.daos;
 
-import com.beans.Project;
+import com.beans.Sprint;
 import com.beans.Sprint;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

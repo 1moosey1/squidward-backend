@@ -1,4 +1,4 @@
-package com.beans;
+package com.squidward.beans;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -7,14 +7,19 @@ import java.util.Date;
 @Entity
 @Table(name="user_story")
 public class UserStory implements Serializable {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="us_id")
     private int id;
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="uss_id")
     private UserStoryStatus status;
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="sprint_id")
+    private Sprint sprint;
 
     @Column(name="story")
     private String story;
@@ -34,14 +39,6 @@ public class UserStory implements Serializable {
     @Column(name="done_date")
     private Date doneDate;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="sprint_id")
-    private Sprint sprint;
-
-    public UserStory() {
-        super();
-    }
-
     public int getId() {
         return id;
     }
@@ -56,6 +53,14 @@ public class UserStory implements Serializable {
 
     public void setStatus(UserStoryStatus status) {
         this.status = status;
+    }
+
+    public Sprint getSprint() {
+        return sprint;
+    }
+
+    public void setSprint(Sprint sprint) {
+        this.sprint = sprint;
     }
 
     public String getStory() {
@@ -104,13 +109,5 @@ public class UserStory implements Serializable {
 
     public void setDoneDate(Date doneDate) {
         this.doneDate = doneDate;
-    }
-
-    public Sprint getSprint() {
-        return sprint;
-    }
-
-    public void setSprint(Sprint sprint) {
-        this.sprint = sprint;
     }
 }

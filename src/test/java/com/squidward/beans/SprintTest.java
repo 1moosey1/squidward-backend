@@ -3,10 +3,10 @@ package com.squidward.beans;
 import net.sf.beanrunner.BeanRunner;
 import org.junit.Test;
 
-public class UserTest {
+public class SprintTest {
     @Test
-    public void testUser() throws Exception {
+    public void testSprint() throws Exception {
         BeanRunner beanRunner = new BeanRunner();
-        beanRunner.testBean(new User());
+        beanRunner.testBean(new Sprint());
     }
 }

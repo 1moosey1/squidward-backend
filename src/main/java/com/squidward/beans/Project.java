@@ -1,14 +1,16 @@
-package com.beans;
+package com.squidward.beans;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name="project")
 public class Project implements Serializable {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="project_id")
     private int id;
 
@@ -21,13 +23,12 @@ public class Project implements Serializable {
     @Column(name="end_date")
     private Date endDate;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToMany(mappedBy="projects")
+    private Set<User> users;
+
+    @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="owner")
     private User owner;
-
-    public Project() {
-        super();
-    }
 
     public int getId() {
         return id;
@@ -61,7 +62,19 @@ public class Project implements Serializable {
         this.endDate = endDate;
     }
 
-    public User getOwner() { return owner; }
+    public Set<User> getUsers() {
+        return users;
+    }
 
-    public void setOwner(User owner) { this.owner = owner; }
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
 }

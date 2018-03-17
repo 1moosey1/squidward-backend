@@ -1,1 +1,11 @@
 language: java
+branches:
+  only:
+  - master
+deploy:
+  provider: heroku
+  api_key:
+    secure: cTVn4EP6B/crJf9LMGQzgoL0jGA/dOgzPqVhuZpvcGMwTGn30nLJeWRV/eblCrw/Kf5aXPoSz/+/4QjvGlarG/MowSNbsBHN9HUV5e+DoHrDn3A+Ac2nxXY70ww1s6hFtk/lMcyO/+immU0j4sg1gv+QCiLVcoi91HF4MD2GqX2/tLmAGQNQzvkN8WLFpPRwtYPoj1P6qmHmYGU2y+zofY8v1foMUyFWw/w6NCZem2w/HXB0mM1wbIk2ZJbQTxTzkLAYgqQv73SpAXAI/akeFC6FnJcGqVfjFepOzKWpJyjCsMUHOTU67DPq1QtzwdX8GcNU7iNiiahuy9C/kHfn27ZKs88fwxpWCOyCXCncgtjEtSbm5KpuT4TOCVqjJsyqgf8fuEzS54GYH7Z2uep/A54ZqJR6sEGOxD6PI7J99P4nMVcnZI8U8xSzl9hykk6unE84tRiF58/7S3tiUOfbtinF0eelFSpHTdpBRJY2oNUSEUi8dfMq1ar7jBEGZFPj4IDWIpBjnrRw++TmKLiJkIoRTnlqP6VmZSaFx+JU7wsVyKJCczrOnJ6JE//sEl9EGZkD9o8FSBghE1VRAZ7RZk8SpIqe/Jno2yB8Rrlg/u5JrAe8eQ4YykdcYE3379yxSzdMLi0EYiNCR1H1VBeBhL5eifJ9QZdkarScQ8rpy04=
+  app: squidward-backend
+  on:
+    repo: 1moosey1/squidward-backend
