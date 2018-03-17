@@ -2,13 +2,14 @@ package com.services;
 
 
 import org.springframework.stereotype.Service;
+import com.beans.Project;
 
 /*
-----User Story Service---
-Get User Story
+----Auth Service---
+Log In
+Log Out
 
 */
-
 @Service
-public class UserStory {
+public class AuthService {
 }

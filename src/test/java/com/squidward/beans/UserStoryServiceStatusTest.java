@@ -4,7 +4,7 @@ import com.beans.UserStoryStatus;
 import org.junit.Test;
 import org.meanbean.test.BeanTester;
 
-public class UserStoryStatusTest {
+public class UserStoryServiceStatusTest {
     @Test
     public void testUserStoryStatus() {
         BeanTester beanTester = new BeanTester();
