@@ -1,11 +1,10 @@
-package com.services;
+package com.squidward.services;
 
 
-import com.beans.Sprint;
-import com.daos.UserStoryRepo;
+import com.squidward.beans.UserStory;
+import com.squidward.daos.UserStoryRepo;
 import org.springframework.stereotype.Service;
-import com.beans.UserStory;
-import com.beans.UserStoryStatus;
+
 
 import java.util.List;
 

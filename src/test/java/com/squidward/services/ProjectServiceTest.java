@@ -1,16 +1,10 @@
-package com.services;
+package com.squidward.services;
 
 import com.beans.Project;
 import com.daos.ProjectRepo;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.*;
-
 
 
 public class ProjectServiceTest {

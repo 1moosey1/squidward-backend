@@ -1,12 +1,12 @@
-package com.services;
+package com.squidward.services;
 
 
-import com.beans.Project;
-import com.daos.SprintRepo;
+
+import com.squidward.beans.Sprint;
+import com.squidward.daos.SprintRepo;
 import org.springframework.stereotype.Service;
-import com.beans.Sprint;
 
-import javax.persistence.criteria.CriteriaBuilder;
+
 import java.util.List;
 /*
 ----Sprint Service---

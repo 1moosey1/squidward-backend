@@ -1,8 +1,8 @@
-package com.services;
+package com.squidward.services;
 
 
 import org.springframework.stereotype.Service;
-import com.beans.Project;
+
 
 /*
 ----Auth Service---

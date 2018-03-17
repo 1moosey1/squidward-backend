@@ -1,8 +1,9 @@
-package com.services;
+package com.squidward.services;
 
 
-import com.beans.Project;
-import com.daos.ProjectRepo;
+
+import com.squidward.beans.Project;
+import com.squidward.daos.ProjectRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
