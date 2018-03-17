@@ -20,7 +20,7 @@ public interface ProjectRepo extends CrudRepository<Project, Integer> {
     //Add a Project
     void addProject(Project project);
 
-    public Project findById(int id);
+
 
 
 
