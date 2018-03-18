@@ -1,7 +1,7 @@
 package com.squidward.controllers;
 
 import com.squidward.services.AuthService;
-import com.squidward.util.GithubConfig;
+import com.squidward.utils.GithubConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
