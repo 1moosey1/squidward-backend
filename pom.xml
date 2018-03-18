@@ -46,7 +46,7 @@
             <version>1.0.0</version>
         </dependency>
 
-        <!--postgres dependencies-->
+        <!-- postgres dependencies -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
