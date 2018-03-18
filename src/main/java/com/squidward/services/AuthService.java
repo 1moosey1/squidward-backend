@@ -1,4 +1,4 @@
-package com.squidward.controllers;
+package com.squidward.services;
 
 import com.squidward.util.GithubConfig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,14 +6,13 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-@RestController
-@RequestMapping("/api")
-public class LoginController {
+@Service
+public class AuthService {
 
     private GithubConfig githubConfig;
 
@@ -22,9 +21,7 @@ public class LoginController {
         this.githubConfig = githubConfig;
     }
 
-    @GetMapping(value = "/login")
-    public String login(@RequestParam("code") String code) {
-
+    public String login(String code) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
