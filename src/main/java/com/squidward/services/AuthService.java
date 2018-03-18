@@ -1,6 +1,6 @@
 package com.squidward.services;
 
-import com.squidward.util.GithubConfig;
+import com.squidward.utils.GithubConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

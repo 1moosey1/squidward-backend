@@ -1,4 +1,4 @@
-package com.squidward.util;
+package com.squidward.utils;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 public class GithubConfig {
 
     @Value(value="https://github.com/login/oauth/access_token")
-    private String oauthURI;
+    private String oAuthURI;
 
     @Value(value="Iv1.d10898f268a22d3b")
     private String clientId;
@@ -16,11 +16,11 @@ public class GithubConfig {
     private String clientSecret;
 
     public String getOAuthURI() {
-        return oauthURI;
+        return oAuthURI;
     }
 
     public void setOAuthURI(String oauthURI) {
-        this.oauthURI = oauthURI;
+        this.oAuthURI = oauthURI;
     }
 
     public String getClientId() {
