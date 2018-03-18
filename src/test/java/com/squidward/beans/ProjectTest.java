@@ -1,13 +1,9 @@
 package com.squidward.beans;
 
-import net.sf.beanrunner.BeanRunner;
-import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class ProjectTest {
+    BeanRunner beanRunner = new BeanRunner();
+    beanRunner.testBean(new Sprint());
 
-    @Test
-    public void testProject() throws Exception {
-        BeanRunner beanRunner = new BeanRunner();
-        beanRunner.testBean(new Project());
-    }
 }
