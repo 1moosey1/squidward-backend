@@ -1,6 +1,7 @@
 
 package com.squidward.Services;
 
+import com.squidward.beans.Project;
 import com.squidward.beans.Sprint;
 import com.squidward.daos.SprintRepo;
 import org.springframework.stereotype.Service;
@@ -17,16 +18,16 @@ Add Sprints
 public class SprintService {
     private SprintRepo sprintrepo;
 
-    //Get Sprint by ID
-    public List<Sprint> getSprint(int project_id)
+    //Get Sprint by Project ID
+    public List<Sprint> getSprintsById(Project project)
     {
-        return sprintrepo.getAll();
+        return sprintrepo.getSprintsByProject(project);
     }
 
     // Add Sprint
-    public void addSprint(Sprint sprint)
+    public Sprint saveSprint(Sprint sprint)
     {
-        sprintrepo.save(sprint);
+        return sprintrepo.save(sprint);
     }
 
 

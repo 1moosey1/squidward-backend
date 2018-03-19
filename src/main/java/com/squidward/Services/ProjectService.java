@@ -29,16 +29,16 @@ public class ProjectService {
     }
 
     //Delete Project by ID
-    public void deleteProject(int project_id)
+    public void deleteProject(Project project)
     {
-        projectrepo.deleteProjectsById(project_id);
+        projectrepo.deleteProjects(project);
     }
 
     //Add project
-    public void addProject(Project project)
+    public Project saveProject(Project project)
     {
 
-        projectrepo.save(project);
+       return  projectrepo.save(project);
 
     }
 

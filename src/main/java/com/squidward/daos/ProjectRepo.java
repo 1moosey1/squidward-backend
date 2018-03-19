@@ -14,11 +14,11 @@ public interface ProjectRepo extends CrudRepository<Project, Integer> {
     List<Project> findAll();
 
     //Delete a Project
-    void deleteProjectsById(int id);
+    void deleteProjects(Project project);
 
 
     //Add a Project
-    void addProject(Project project);
+    Project saveProject(Project project);
 
 
 }
