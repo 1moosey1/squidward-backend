@@ -41,7 +41,7 @@ public class SprintServiceTest {
         sprint.setProject(project);
 
         when(sprintRepo.getSprintsByProject(project)).thenReturn((List<Sprint>) sprint);
-        Sprint result = sprintService.getSprintsById(project);
+      //  Sprint result = sprintService.getSprintsById(project);
         assertEquals(1,sprint.getId());
 
 
