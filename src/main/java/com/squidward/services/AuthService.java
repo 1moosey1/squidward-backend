@@ -69,7 +69,7 @@ public class AuthService {
             }
 
         } catch (IOException | NullPointerException e) {
-            
+
             log.error(e.getMessage());
             return new Parameters();
         }
