@@ -5,4 +5,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProjectRepo extends CrudRepository<Project, Integer> {}
+public interface ProjectRepo extends CrudRepository<Project, Integer> {
+
+    Iterable<Project> findAllByOwnerUsername(String username);
+    Iterable<Project> findAllByUsersUsername(String username);
+}
