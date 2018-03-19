@@ -1,9 +1,12 @@
 package com.squidward.beans;
 
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
+@ToString
 @Entity
 @Table(name="squidward_user")
 public class User implements Serializable {
