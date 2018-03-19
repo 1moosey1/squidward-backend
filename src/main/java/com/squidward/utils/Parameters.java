@@ -6,6 +6,9 @@ import java.util.Map;
 public class Parameters {
 
     private Map<String, String> parameters;
+
+    public Parameters() {}
+
     public Parameters(String body) {
 
         parameters = new HashMap<>();
