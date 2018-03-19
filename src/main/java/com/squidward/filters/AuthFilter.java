@@ -1,7 +1,5 @@
 package com.squidward.filters;
 
-import com.squidward.beans.User;
-import com.squidward.services.UserService;
 import com.squidward.utils.AuthPatterns;
 import com.squidward.utils.GithubConfig;
 import com.squidward.utils.SquidwardHttpServletRequest;
@@ -24,7 +22,6 @@ public class AuthFilter extends OncePerRequestFilter {
 
     private AuthPatterns authPatterns;
     private GithubConfig githubConfig;
-    private UserService userService;
 
     @Autowired
     public void setAuthPatterns(AuthPatterns authPatterns) {
@@ -34,11 +31,6 @@ public class AuthFilter extends OncePerRequestFilter {
     @Autowired
     public void setGithubConfig(GithubConfig githubConfig) {
         this.githubConfig = githubConfig;
-    }
-
-    @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
     }
 
     @Override
@@ -57,18 +49,8 @@ public class AuthFilter extends OncePerRequestFilter {
 
                 String oAuthToken = oAuthCookie.getValue();
                 gitHub = GitHub.connectUsingOAuth(oAuthToken);
+                gitHub.getMyself().getLogin();
                 requestWrapper.setGitHub(gitHub);
-
-                String username = gitHub.getMyself().getLogin();
-                String email = gitHub.getMyself().getEmail();
-                if (!userService.doesUserExist(username)) {
-
-                    User user = new User();
-                    user.setUsername(username);
-                    user.setEmail(email);
-                    user = userService.saveUser(user);
-                    log.debug(user.toString());
-                }
 
             } catch (IOException | NullPointerException e) {
 
