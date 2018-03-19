@@ -30,4 +30,10 @@ public class GithubConfig {
 
     @Value(value="${github.oauth.code.param}")
     private String codeParam;
+
+    @Value(value="${github.oauth.scope}")
+    private String[] scope;
+
+    @Value(value="${github.oauth.scope.param}")
+    private String scopeParam;
 }
