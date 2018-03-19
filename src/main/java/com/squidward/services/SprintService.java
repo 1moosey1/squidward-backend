@@ -1,7 +1,7 @@
 package com.squidward.services;
 
 import com.squidward.beans.Sprint;
-import com.squidward.daos.SprintRepo;
+import com.squidward.repos.SprintRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
