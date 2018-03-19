@@ -21,7 +21,7 @@ public class RunApplication {
 
         FilterRegistrationBean<AuthFilter> registration = new FilterRegistrationBean<>();
         registration.setFilter(authFilter());
-        registration.addUrlPatterns("/*");
+        registration.addUrlPatterns("/api/*");
         registration.setName("AuthFilter");
         registration.setOrder(1);
         return registration;
