@@ -1,7 +1,7 @@
 package com.squidward.services;
 
 import com.squidward.beans.User;
-import com.squidward.daos.UserRepo;
+import com.squidward.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

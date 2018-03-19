@@ -1,9 +1,12 @@
 package com.squidward.services;
 
 import com.squidward.beans.Project;
-import com.squidward.daos.ProjectRepo;
+import com.squidward.repos.ProjectRepo;
+import org.kohsuke.github.GitHub;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 
 @Service
 public class ProjectService {
@@ -15,8 +18,14 @@ public class ProjectService {
         this.projectRepo = projectRepo;
     }
 
-    public Iterable<Project> getProjects() {
-        return projectRepo.findAll();
+    public Iterable<Project> getOwnedProjects(GitHub gitHub) throws IOException {
+        String username = gitHub.getMyself().getLogin();
+        return projectRepo.findAllByOwnerUsername(username);
+    }
+
+    public Iterable<Project> getDeveloperProjects(GitHub gitHub) throws IOException {
+        String username = gitHub.getMyself().getLogin();
+        return projectRepo.findAllByUsersUsername(username);
     }
 
     public Project saveProject(Project project) {
