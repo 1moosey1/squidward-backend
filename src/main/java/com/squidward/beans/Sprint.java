@@ -1,5 +1,7 @@
 package com.squidward.beans;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -7,8 +9,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@ToString
 @Table(name="sprint")
+@Getter @Setter @ToString
 public class Sprint implements Serializable {
 
     @Id
@@ -31,53 +33,4 @@ public class Sprint implements Serializable {
 
     @Column(name="end_date")
     private Date endDate;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
-    public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
-    }
-
-    public boolean isRelease() {
-        return release;
-    }
-
-    public void setRelease(boolean release) {
-        this.release = release;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
 }
