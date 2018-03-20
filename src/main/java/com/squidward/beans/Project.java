@@ -1,11 +1,14 @@
 package com.squidward.beans;
 
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
+@ToString
 @Table(name="project")
 public class Project implements Serializable {
 
@@ -23,10 +26,10 @@ public class Project implements Serializable {
     @Column(name="end_date")
     private Date endDate;
 
-    @ManyToMany(mappedBy="projects")
+    @ManyToMany(mappedBy="projects", cascade = {CascadeType.ALL})
     private Set<User> users;
 
-    @OneToOne(fetch=FetchType.LAZY)
+    @OneToOne(fetch=FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinColumn(name="owner")
     private User owner;
 
