@@ -1,5 +1,7 @@
 package com.squidward.utils;
 
+import com.squidward.configs.ApplicationConfig;
+import com.squidward.configs.GithubConfig;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -28,7 +30,7 @@ public class JWTUtil {
         this.githubConfig = githubConfig;
     }
 
-    public String createJWT(String id, String subject) {
+    public String createJWT(int id, String subject) {
 
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 
@@ -39,7 +41,7 @@ public class JWTUtil {
         Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
 
         JwtBuilder builder = Jwts.builder()
-                .setId(id)
+                .setId(Integer.toString(id))
                 .setIssuedAt(now)
                 .setSubject(subject)
                 .setIssuer(applicationConfig.getIssuer())
