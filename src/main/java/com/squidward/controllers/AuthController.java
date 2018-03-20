@@ -1,7 +1,7 @@
 package com.squidward.controllers;
 
 import com.squidward.services.AuthService;
-import com.squidward.utils.GithubConfig;
+import com.squidward.configs.GithubConfig;
 import com.squidward.utils.Parameters;
 import com.squidward.utils.UrlPatterns;
 import org.springframework.beans.factory.annotation.Autowired;

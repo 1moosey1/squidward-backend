@@ -1,7 +1,7 @@
 package com.squidward.services;
 
 import com.squidward.beans.User;
-import com.squidward.utils.GithubConfig;
+import com.squidward.configs.GithubConfig;
 import com.squidward.utils.Parameters;
 import lombok.extern.slf4j.Slf4j;
 import org.kohsuke.github.GitHub;
