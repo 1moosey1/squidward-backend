@@ -1,46 +1,29 @@
 package com.squidward.services;
 
-
 import com.squidward.beans.Project;
 import com.squidward.daos.ProjectRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-
-
-/*
-----Project Service---
-Get Projects -> List
-Adding Projects
-Deleting Projects
-
-*/
-
 
 @Service
 public class ProjectService {
-    private ProjectRepo projectrepo;
 
+    private ProjectRepo projectRepo;
 
-    //Get All Projects
-    public List<Project> getAllProjects()
-    {
-        return projectrepo.findAll();
+    @Autowired
+    public void setProjectRepo(ProjectRepo projectRepo) {
+        this.projectRepo = projectRepo;
     }
 
-    //Delete Project by ID
-    public void deleteProject(Project project)
-    {
-        projectrepo.deleteProjects(project);
+    public Iterable<Project> getProjects() {
+        return projectRepo.findAll();
     }
 
-    //Add project
-    public Project saveProject(Project project)
-    {
-
-       return  projectrepo.save(project);
-
+    public Project saveProject(Project project) {
+        return projectRepo.save(project);
     }
 
-
+    public void deleteProject(int projectId) {
+        projectRepo.deleteById(projectId);
+    }
 }

@@ -1,10 +1,13 @@
 package com.squidward.beans;
 
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
+@ToString
 @Table(name="sprint")
 public class Sprint implements Serializable {
 
@@ -76,4 +79,5 @@ public class Sprint implements Serializable {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
 }

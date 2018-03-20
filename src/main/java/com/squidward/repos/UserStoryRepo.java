@@ -1,4 +1,4 @@
-package com.squidward.daos;
+package com.squidward.repos;
 
 import com.squidward.beans.UserStory;
 import org.springframework.data.repository.CrudRepository;
