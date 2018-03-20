@@ -9,6 +9,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -30,6 +31,7 @@ public class User implements Serializable {
     private String email;
 
     @NotNull
+    @Size(min=6)
     @JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
     @Column(name="password")
     private String password;
