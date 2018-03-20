@@ -1,5 +1,6 @@
 package com.squidward.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class Sprint implements Serializable {
     private int number;
 
     @ManyToOne(fetch=FetchType.LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name="project_id")
     private Project project;
 
