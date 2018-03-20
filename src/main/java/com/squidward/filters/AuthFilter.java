@@ -1,8 +1,8 @@
 package com.squidward.filters;
 
-import com.squidward.utils.UrlPatterns;
 import com.squidward.utils.GithubConfig;
 import com.squidward.utils.SquidwardHttpServletRequest;
+import com.squidward.utils.UrlPatterns;
 import lombok.extern.slf4j.Slf4j;
 import org.kohsuke.github.GitHub;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.WebUtils;
 
-import javax.servlet.*;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
