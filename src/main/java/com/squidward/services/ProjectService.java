@@ -1,7 +1,9 @@
 package com.squidward.services;
 
 import com.squidward.beans.Project;
+import com.squidward.beans.User;
 import com.squidward.repos.ProjectRepo;
+import com.squidward.repos.UserRepo;
 import org.kohsuke.github.GitHub;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,12 @@ import java.io.IOException;
 public class ProjectService {
 
     private ProjectRepo projectRepo;
+    private UserRepo userRepo;
+
+    @Autowired
+    public void setUserRepo(UserRepo userRepo) {
+        this.userRepo = userRepo;
+    }
 
     @Autowired
     public void setProjectRepo(ProjectRepo projectRepo) {
@@ -28,8 +36,19 @@ public class ProjectService {
         return projectRepo.findAllByUsersUsername(username);
     }
 
-    public Project saveProject(Project project) {
+    public Project saveProject(Project project, GitHub gitHub) throws IOException {
+        //need owner user
+        String username = gitHub.getMyself().getLogin();
+
+        User u = userRepo.getUserByUsername(username);
+        //store the owner into the project.
+        project.setOwner(u);
+
+//        project.setStartDate();
+
+        //save the project.
         return projectRepo.save(project);
+        //save this project to the user's project list
     }
 
     public void deleteProject(int projectId) {

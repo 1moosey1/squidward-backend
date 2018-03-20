@@ -1,6 +1,7 @@
 package com.squidward.controllers;
 
 import com.squidward.beans.Project;
+import com.squidward.beans.User;
 import com.squidward.services.ProjectService;
 import com.squidward.utils.SquidwardHttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -57,8 +58,9 @@ public class ProjectController {
     }
 
     @PostMapping(value = "/projects/new")
-    public Project addProject(@RequestBody Project project) {
-        return projectService.saveProject(project);
+    public Project addProject(HttpServletRequest httpServletRequest, @RequestBody Project project) throws IOException {
+        GitHub gitHub = ((SquidwardHttpServletRequest) httpServletRequest).getGitHub();
+        return projectService.saveProject(project, gitHub);
     }
 
     @DeleteMapping(value = "/projects/delete")
