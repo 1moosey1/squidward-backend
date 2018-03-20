@@ -32,12 +32,31 @@ public class ProjectController {
         Iterable<Project> projects = new ArrayList<>();
         GitHub gitHub = ((SquidwardHttpServletRequest) httpServletRequest).getGitHub();
 
+        System.out.println();
+        System.out.println();
+        System.out.println("1" + gitHub);
+        System.out.println();
+        System.out.println();
+
+
+
         try{
             projects = projectService.getOwnedProjects(gitHub);
+            System.out.println();
+            System.out.println();
+            System.out.println("2" + projects);
+            System.out.println();
+            System.out.println();
         } catch (IOException e) {
             log.error(e.getMessage());
             return new ResponseEntity<>(projects, HttpStatus.UNAUTHORIZED);
         }
+
+        System.out.println();
+        System.out.println();
+        System.out.println("3");
+        System.out.println();
+        System.out.println();
 
         return new ResponseEntity <>(projects, HttpStatus.OK);
     }
