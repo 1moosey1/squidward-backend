@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface SprintRepo extends CrudRepository<Sprint, Integer> {
     //Get all Sprints
-    List<Sprint> getSprintsByProject(Project project);
+    List<Sprint> getSprintsByProject(int project_id);
 
     //Add a Project
     Sprint saveSprint(Sprint sprint);

@@ -14,7 +14,7 @@ public interface ProjectRepo extends CrudRepository<Project, Integer> {
     List<Project> findAll();
 
     //Delete a Project
-    void deleteProjects(Project project);
+    void deleteProjectsById(int project_id);
 
 
     //Add a Project
