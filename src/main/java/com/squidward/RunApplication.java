@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 public class RunApplication {
 
     public static void main(String[] args) {
-        log.debug("Starting Spring Application");
+     //   log.debug("Starting Spring Application");
         SpringApplication.run(RunApplication.class,args);
     }
 
