@@ -28,7 +28,7 @@ public class JWTUtil {
         this.githubConfig = githubConfig;
     }
 
-    private String createJWT(String id, String subject) {
+    public String createJWT(String id, String subject) {
 
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 
@@ -51,7 +51,7 @@ public class JWTUtil {
         return builder.compact();
     }
 
-    private Claims parseJWT(String jwt) {
+    public Claims parseJWT(String jwt) {
 
         return Jwts.parser()
                 .setSigningKey(DatatypeConverter.parseBase64Binary(githubConfig.getClientSecret()))
