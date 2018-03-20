@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 @Service
 public class ProjectService {
@@ -39,16 +43,17 @@ public class ProjectService {
     public Project saveProject(Project project, GitHub gitHub) throws IOException {
         //need owner user
         String username = gitHub.getMyself().getLogin();
-
         User u = userRepo.getUserByUsername(username);
+
         //store the owner into the project.
         project.setOwner(u);
 
-//        project.setStartDate();
+        //set date
+        Date date = new Date(System.currentTimeMillis());
+        project.setStartDate(date);
 
         //save the project.
         return projectRepo.save(project);
-        //save this project to the user's project list
     }
 
     public void deleteProject(int projectId) {

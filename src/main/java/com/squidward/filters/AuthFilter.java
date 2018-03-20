@@ -1,6 +1,6 @@
 package com.squidward.filters;
 
-import com.squidward.utils.GithubConfig;
+import com.squidward.configs.GithubConfig;
 import com.squidward.utils.SquidwardHttpServletRequest;
 import com.squidward.utils.UrlPatterns;
 import lombok.extern.slf4j.Slf4j;

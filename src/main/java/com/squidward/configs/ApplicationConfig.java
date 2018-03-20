@@ -15,4 +15,7 @@ public class ApplicationConfig {
 
     @Value("${application.token.expiration}")
     private long tokenExpiration;
+
+    @Value("${application.token.name}")
+    private String tokenName;
 }

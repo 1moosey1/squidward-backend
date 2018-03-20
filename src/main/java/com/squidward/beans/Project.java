@@ -2,6 +2,7 @@ package com.squidward.beans;
 
 import lombok.Getter;
 import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -32,6 +33,7 @@ public class Project implements Serializable {
     private Set<User> users;
 
     @OneToOne(fetch=FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name="owner")
     private User owner;
 }

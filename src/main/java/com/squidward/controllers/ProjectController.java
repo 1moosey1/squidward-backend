@@ -38,7 +38,6 @@ public class ProjectController {
             log.error(e.getMessage());
             return new ResponseEntity<>(projects, HttpStatus.UNAUTHORIZED);
         }
-
         return new ResponseEntity <>(projects, HttpStatus.OK);
     }
 
