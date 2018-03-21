@@ -1,5 +1,6 @@
 package com.squidward.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -20,9 +21,11 @@ public class UserStory implements Serializable {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="uss_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private UserStoryStatus status;
 
     @ManyToOne(fetch=FetchType.LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name="sprint_id")
     private Sprint sprint;
 
