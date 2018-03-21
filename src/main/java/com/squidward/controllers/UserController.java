@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
@@ -34,13 +33,8 @@ public class UserController {
     public void loginUser(HttpServletResponse response, @RequestBody User user) {
         Optional<String> jwt = userService.loginUser(user);
         if (jwt.isPresent()) {
-
-            Cookie jwtCookie = new Cookie(applicationConfig.getTokenName(), jwt.get());
-            jwtCookie.setPath("/");
-            response.addCookie(jwtCookie);
-
+            response.addHeader(applicationConfig.getTokenName(), jwt.get());
         } else {
-
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
     }

@@ -13,11 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.UriComponentsBuilder;
-import org.springframework.web.util.WebUtils;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -64,13 +62,13 @@ public class AuthFilter extends OncePerRequestFilter {
 
             GitHub gitHub;
             Claims claims = null;
-            Cookie idCookie = WebUtils.getCookie(httpServletRequest, appConfig.getTokenName());
+            String jwtToken = httpServletRequest.getHeader(appConfig.getTokenName());
 
             try {
 
-                claims = jwtUtil.parseJWT(idCookie.getValue());
+                claims = jwtUtil.parseJWT(jwtToken);
                 if (!userService.doesUserExistByEmail(claims.getSubject())) {
-                    handleUnauthorized(httpServletResponse, idCookie);
+                    handleUnauthorized(httpServletResponse);
                     return;
                 }
 
@@ -93,7 +91,7 @@ public class AuthFilter extends OncePerRequestFilter {
             } catch(JwtException | NullPointerException e) {
 
                 log.error(e.getMessage());
-                handleUnauthorized(httpServletResponse, idCookie);
+                handleUnauthorized(httpServletResponse);
                 return;
             }
         }
@@ -101,11 +99,8 @@ public class AuthFilter extends OncePerRequestFilter {
         filterChain.doFilter(requestWrapper, httpServletResponse);
     }
 
-    private void handleUnauthorized(HttpServletResponse httpServletResponse, Cookie idCookie) {
+    private void handleUnauthorized(HttpServletResponse httpServletResponse) {
         httpServletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        if (idCookie != null) {
-            idCookie.setMaxAge(0);
-        }
     }
 
     private void handleOAuthRedirect(HttpServletResponse httpServletResponse, String email)
