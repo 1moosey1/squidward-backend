@@ -37,7 +37,6 @@ public class UserController {
 
             Cookie jwtCookie = new Cookie(applicationConfig.getTokenName(), jwt.get());
             jwtCookie.setPath("/");
-            jwtCookie.setDomain("https://squidward-backend.herokuapp.com/");
             response.addCookie(jwtCookie);
 
         } else {
