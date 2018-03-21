@@ -1,7 +1,7 @@
 package com.squidward.services;
 
 import com.squidward.beans.UserStory;
-import com.squidward.daos.UserStoryRepo;
+import com.squidward.repos.UserStoryRepo;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,8 +16,6 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
-
-@RunWith(SpringJUnit4ClassRunner.class)
 public class UserStoryServiceTest {
 
     @Mock
@@ -58,14 +56,7 @@ public class UserStoryServiceTest {
         UserStory userStory = new UserStory();
         userStoryList.add(userStory);
         when(userStoryRepo.saveAll(userStoryList)).thenReturn(userStoryList);
-       List <UserStory> result = (List<UserStory>) userStoryService.saveUserStories(userStoryList);
+        List <UserStory> result = (List<UserStory>) userStoryService.saveUserStories(userStoryList);
         assertEquals(1, result.size());
-
-
-
-
-
-
-
     }
 }

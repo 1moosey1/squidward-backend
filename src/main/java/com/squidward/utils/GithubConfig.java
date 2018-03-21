@@ -40,4 +40,31 @@ public class GithubConfig {
     private Object OAuthURI;
 
 
+    public String getClientIdParam() {
+        return clientIdParam;
+    }
+
+    public String getClientSecretParam() {
+        return clientSecretParam;
+    }
+
+    public String getCodeParam() {
+        return codeParam;
+    }
+
+    public String getClientId() {
+        return clientId;
+    }
+
+    public String getClientSecret() {
+        return clientSecret;
+    }
+
+    public Object getOAuthURI() {
+        return OAuthURI;
+    }
+
+    public String getTokenParam() {
+        return tokenParam;
+    }
 }

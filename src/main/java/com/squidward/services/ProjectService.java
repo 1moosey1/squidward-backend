@@ -1,25 +1,57 @@
 package com.squidward.services;
 
 import com.squidward.beans.Project;
-import com.squidward.daos.ProjectRepo;
+import com.squidward.beans.User;
+import com.squidward.utils.GithubConfig;
+import com.squidward.repos.ProjectRepo;
+import com.squidward.repos.UserRepo;
+import org.kohsuke.github.GitHub;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
+import java.util.Date;
 
 @Service
 public class ProjectService {
 
     private ProjectRepo projectRepo;
+    private UserRepo userRepo;
+
+    @Autowired
+    public void setUserRepo(UserRepo userRepo) {
+        this.userRepo = userRepo;
+    }
 
     @Autowired
     public void setProjectRepo(ProjectRepo projectRepo) {
         this.projectRepo = projectRepo;
     }
 
-    public Iterable<Project> getProjects() {
-        return projectRepo.findAll();
+    public Iterable<Project> getOwnedProjects(GitHub gitHub) throws IOException {
+        String username = gitHub.getMyself().getLogin();
+        return projectRepo.findAllByOwnerUsername(username);
     }
 
-    public Project saveProject(Project project) {
+    public Iterable<Project> getDeveloperProjects(GitHub gitHub) throws IOException, IOException {
+        String username = gitHub.getMyself().getLogin();
+        return projectRepo.findAllByUsersUsername(username);
+    }
+
+    public Project saveProject(Project project, GitHub gitHub) throws IOException {
+        //need owner user
+        String username = gitHub.getMyself().getLogin();
+        User u = userRepo.getUserByUsername(username);
+
+        //store the owner into the project.
+        project.setOwner(u);
+
+
+        //set date
+        Date date = new Date(System.currentTimeMillis());
+        project.setStartDate(date);
+
+        //save the project.
         return projectRepo.save(project);
     }
 

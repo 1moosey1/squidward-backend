@@ -1,30 +1,40 @@
 package com.squidward.services;
 
 import com.squidward.beans.Project;
-import com.squidward.daos.ProjectRepo;
+import com.squidward.beans.User;
+import com.squidward.repos.ProjectRepo;
+import com.squidward.repos.UserRepo;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import com.squidward.utils.GithubConfig;
+import org.kohsuke.github.GitHub;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
 public class ProjectServiceTest {
-
     @Mock
     private ProjectRepo projectRepo;
 
+    @Mock
+    private UserRepo userRepo;
+
     @InjectMocks
     private ProjectService projectService;
+
+    @InjectMocks
+    private UserService userService;
 
     @Before
     public void setup(){
@@ -32,23 +42,34 @@ public class ProjectServiceTest {
     }
 
     @Test
-    public void setProjectRepo() {
-        Project project = new Project();
-        projectService.setProjectRepo(projectRepo);
+    public void setUserRepo() {
+        User user = new User();
+        userService.setUserRepo(userRepo);
+        assertNotNull(userService);
 
     }
 
     @Test
-    public void getProjects() {
+    public void setProjectRepo() {
+        Project project = new Project();
+        projectService.setProjectRepo(projectRepo);
+        assertNotNull(projectService);
+    }
 
-        List<Project> projectList = new ArrayList<Project>();
-        projectList.add(new Project());
-        when(projectRepo.findAll()).thenReturn(projectList);
-        List<Project> result = (List<Project>) projectService.getProjects();
-        assertEquals(1, result.size());
+    @Test
+    public void getOwnedProjects() throws IOException {
+        GitHub gitHub = null;
+        String username = gitHub.getMyself().getLogin();
+        assertNotNull(username);
 
     }
 
+    @Test
+    public void getDeveloperProjects() {
+
+    }
+
+/*
     @Test
     public void saveProject() {
 
@@ -57,9 +78,7 @@ public class ProjectServiceTest {
         when(projectRepo.save(project)).thenReturn(project);
         Project result = projectService.saveProject(project);
         assertEquals(1, result.getId());
-
-
-    }
+    } */
 
     @Test
     public void deleteProject() {
@@ -67,6 +86,6 @@ public class ProjectServiceTest {
         project.setId(1);
         projectService.deleteProject(project.getId());
 
-        verify(projectRepo, times(1)).deleteProjectsById(1);
+        verify(projectRepo, times(1)).deleteById(1);
     }
 }
