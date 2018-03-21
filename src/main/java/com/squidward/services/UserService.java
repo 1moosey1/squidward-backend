@@ -4,13 +4,17 @@ import com.squidward.beans.User;
 import com.squidward.repos.UserRepo;
 import com.squidward.utils.JWTUtil;
 import com.squidward.utils.ValidatorFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import java.util.Optional;
+import java.util.Set;
 
+@Slf4j
 @Service
 public class UserService {
 
@@ -90,6 +94,11 @@ public class UserService {
 
     private boolean hasValidUserFields(User user) {
         Validator validator = validatorFactory.getValidator();
-        return validator.validate(user).size() == 0;
+        Set<ConstraintViolation<User>> violations = validator.validate(user);
+        for (ConstraintViolation<User> violation : violations) {
+            log.debug(violation.getMessageTemplate() + " " + violation.getMessage());
+        }
+
+        return violations.size() == 0;
     }
 }

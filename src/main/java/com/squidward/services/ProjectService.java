@@ -42,18 +42,18 @@ public class ProjectService {
     }
 
     public Project saveProject(Project project, GitHub gitHub) throws IOException {
-        //need owner user
+        // need owner user
         String username = gitHub.getMyself().getLogin();
         Optional<User> userOptional = userRepo.getUserByUsername(username);
 
-        //store the owner into the project
+        // store the owner into the project
         userOptional.ifPresent(project::setOwner);
 
-        //set date
+        // set date
         Date date = new Date(System.currentTimeMillis());
         project.setStartDate(date);
 
-        //save the project.
+        // save the project
         return projectRepo.save(project);
     }
 
