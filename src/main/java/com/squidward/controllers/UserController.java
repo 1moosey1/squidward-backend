@@ -46,8 +46,7 @@ public class UserController {
 
     @PostMapping("/user/register")
     public void registerUser(HttpServletResponse response, @RequestBody User user) {
-        Optional userId = userService.registerUser(user);
-        if(!userId.isPresent()) {
+        if(!userService.registerUser(user)) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
     }

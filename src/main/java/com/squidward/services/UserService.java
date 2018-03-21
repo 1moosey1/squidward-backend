@@ -33,12 +33,29 @@ public class UserService {
         this.validatorFactory = validatorFactory;
     }
 
-    public boolean doesUserExist(String username) {
+    public boolean doesUserExistByUsername(String username) {
         return userRepo.existsByUsername(username);
     }
 
-    public User getUser(String username) {
+    public boolean doesUserExistByEmail(String email) {
+        return userRepo.existsByEmail(email);
+    }
+
+    public Optional<User> getUserByUsername(String username) {
         return userRepo.getUserByUsername(username);
+    }
+
+    public Optional<User> getUserByEmail(String email) {
+        return userRepo.getUserByEmail(email);
+    }
+
+    public Optional<String> getUserOAuthToken(String email) {
+        Optional<User> userOptional = userRepo.getUserByEmail(email);
+        if (userOptional.isPresent()) {
+            return Optional.ofNullable(userOptional.get().getOAuthToken());
+        }
+
+        return Optional.empty();
     }
 
     public User saveUser(User user) {
@@ -60,15 +77,15 @@ public class UserService {
         return Optional.empty();
     }
 
-    public Optional<Integer> registerUser(User user) {
+    public boolean registerUser(User user) {
         if (hasValidUserFields(user) && !userRepo.existsByEmail(user.getEmail())) {
 
             user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
             userRepo.save(user);
-            return Optional.of(user.getId());
+            return true;
         }
 
-        return Optional.empty();
+        return false;
     }
 
     private boolean hasValidUserFields(User user) {

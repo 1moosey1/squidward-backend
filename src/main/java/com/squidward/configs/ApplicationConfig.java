@@ -18,4 +18,21 @@ public class ApplicationConfig {
 
     @Value("${application.token.name}")
     private String tokenName;
+
+    @Value("${url.patterns.redirect.url}")
+    private String postOAuthRedirect;
+
+    @Value("${url.patterns.excluded.urls}")
+    private String[] excludedUrls;
+
+    public boolean findExcludedMatch(String uri) {
+
+        for (String excludedUrl : excludedUrls) {
+            if (uri.startsWith(excludedUrl)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
