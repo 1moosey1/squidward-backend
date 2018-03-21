@@ -1,6 +1,9 @@
 package com.squidward.beans;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,6 +11,7 @@ import java.util.Date;
 
 @Entity
 @Table(name="user_story")
+@Getter @Setter @ToString
 public class UserStory implements Serializable {
 
     @Id
@@ -42,76 +46,4 @@ public class UserStory implements Serializable {
 
     @Column(name="done_date")
     private Date doneDate;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public UserStoryStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(UserStoryStatus status) {
-        this.status = status;
-    }
-
-    public Sprint getSprint() {
-        return sprint;
-    }
-
-    public void setSprint(Sprint sprint) {
-        this.sprint = sprint;
-    }
-
-    public String getStory() {
-        return story;
-    }
-
-    public void setStory(String story) {
-        this.story = story;
-    }
-
-    public int getDifficulty() {
-        return difficulty;
-    }
-
-    public void setDifficulty(int difficulty) {
-        this.difficulty = difficulty;
-    }
-
-    public String getDoneTag() {
-        return doneTag;
-    }
-
-    public void setDoneTag(String doneTag) {
-        this.doneTag = doneTag;
-    }
-
-    public String getStartTag() {
-        return startTag;
-    }
-
-    public void setStartTag(String startTag) {
-        this.startTag = startTag;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getDoneDate() {
-        return doneDate;
-    }
-
-    public void setDoneDate(Date doneDate) {
-        this.doneDate = doneDate;
-    }
 }

@@ -1,28 +1,21 @@
 package com.squidward.controllers;
 
+import com.squidward.configs.ApplicationConfig;
 import com.squidward.services.AuthService;
-import com.squidward.utils.GithubConfig;
-import com.squidward.utils.Parameters;
-import com.squidward.utils.UrlPatterns;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@Slf4j
 @RestController
 @RequestMapping("/api")
 public class AuthController {
 
     private AuthService authService;
-    private GithubConfig githubConfig;
-    private UrlPatterns urlPatterns;
+    private ApplicationConfig appConfig;
 
     @Autowired
     public void setAuthService(AuthService authSerivce) {
@@ -30,33 +23,21 @@ public class AuthController {
     }
 
     @Autowired
-    public void setGithubConfig(GithubConfig githubConfig) {
-        this.githubConfig = githubConfig;
+    public void setApplicationConfig(ApplicationConfig appConfig) {
+        this.appConfig = appConfig;
     }
 
-    @Autowired
-    public void setUrlPatterns(UrlPatterns urlPatterns) {
-        this.urlPatterns = urlPatterns;
-    }
+    @GetMapping(value = "/oauth/{email}")
+    public void login(
+            HttpServletResponse httpServletResponse,
+            @PathVariable("email") String email,
+            @RequestParam("code") String code) throws IOException {
 
-    @GetMapping(value = "/login")
-    public ResponseEntity<String> login(HttpServletResponse httpServletResponse,
-                                        @RequestParam("code") String code) throws IOException {
+        boolean accessGranted = authService.getAccess(code, email);
+        httpServletResponse.sendRedirect(appConfig.getPostOAuthRedirect());
 
-        String tokenParam = githubConfig.getTokenParam();
-        Parameters parameters = authService.login(code);
-
-        if (parameters.hasParameter(tokenParam)) {
-
-            Cookie oAuthCookie = new Cookie(tokenParam, parameters.getParameter(tokenParam));
-            oAuthCookie.setPath("/");
-            httpServletResponse.addCookie(oAuthCookie);
-            httpServletResponse.sendRedirect(urlPatterns.getOAuthRedirect());
-            return new ResponseEntity<>(HttpStatus.OK);
-
-        } else {
-
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        if (!accessGranted) {
+            httpServletResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
         }
     }
 }
