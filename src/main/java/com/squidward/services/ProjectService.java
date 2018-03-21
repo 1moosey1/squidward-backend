@@ -13,6 +13,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 public class ProjectService {
@@ -43,10 +44,10 @@ public class ProjectService {
     public Project saveProject(Project project, GitHub gitHub) throws IOException {
         //need owner user
         String username = gitHub.getMyself().getLogin();
-        User u = userRepo.getUserByUsername(username);
+        Optional<User> userOptional = userRepo.getUserByUsername(username);
 
-        //store the owner into the project.
-        project.setOwner(u);
+        //store the owner into the project
+        userOptional.ifPresent(project::setOwner);
 
         //set date
         Date date = new Date(System.currentTimeMillis());
