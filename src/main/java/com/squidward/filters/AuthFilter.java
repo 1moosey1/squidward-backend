@@ -63,10 +63,11 @@ public class AuthFilter extends OncePerRequestFilter {
             GitHub gitHub;
             Claims claims = null;
             String jwtToken = httpServletRequest.getHeader(appConfig.getTokenName());
+            log.debug(jwtToken);
 
             try {
 
-                claims = jwtUtil.parseJWT(jwtToken);
+                claims = jwtUtil.parseJWT(jwtToken.split(" ")[1]);
                 if (!userService.doesUserExistByEmail(claims.getSubject())) {
                     handleUnauthorized(httpServletResponse);
                     return;
@@ -105,17 +106,17 @@ public class AuthFilter extends OncePerRequestFilter {
 
     private void handleOAuthRedirect(HttpServletResponse httpServletResponse, String email)
             throws IOException {
-        httpServletResponse.setStatus(HttpServletResponse.SC_SEE_OTHER);
+        httpServletResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
 
         UriComponentsBuilder uriComponentsBuilder
                 = UriComponentsBuilder.fromHttpUrl(githubConfig.getOAuthAccessURI());
         uriComponentsBuilder.queryParam(githubConfig.getClientIdParam(), githubConfig.getClientId());
         uriComponentsBuilder.queryParam(githubConfig.getScopeParam(), githubConfig.getScopes());
         uriComponentsBuilder.queryParam(githubConfig.getOAuthRedirectParam(),
-                githubConfig.getOAuthAccessURI() + email);
+                githubConfig.getOAuthRedirectURI() + email);
 
         String oAuthUrl = uriComponentsBuilder.toUriString();
-        httpServletResponse.sendRedirect(oAuthUrl);
+        httpServletResponse.getWriter().write(oAuthUrl);
         log.debug("Requesting OAuth access for " + email + " at " + oAuthUrl);
     }
 }
