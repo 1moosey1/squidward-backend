@@ -1,5 +1,4 @@
-
-package com.squidward.utils;
+package com.squidward.configs;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +12,15 @@ public class GithubConfig {
 
     @Value(value="${github.oauth.url}")
     private String oAuthURI;
+
+    @Value(value="${github.oauth.access.url}")
+    private String oAuthAccessURI;
+
+    @Value("${github.oauth.redirect}")
+    private String oAuthRedirectURI;
+
+    @Value("${github.oauth.redirect.param}")
+    private String oAuthRedirectParam;
 
     @Value(value="${github.oauth.client.id}")
     private String clientId;
@@ -33,38 +41,8 @@ public class GithubConfig {
     private String codeParam;
 
     @Value(value="${github.oauth.scope}")
-    private String[] scope;
+    private String[] scopes;
 
     @Value(value="${github.oauth.scope.param}")
     private String scopeParam;
-    private Object OAuthURI;
-
-
-    public String getClientIdParam() {
-        return clientIdParam;
-    }
-
-    public String getClientSecretParam() {
-        return clientSecretParam;
-    }
-
-    public String getCodeParam() {
-        return codeParam;
-    }
-
-    public String getClientId() {
-        return clientId;
-    }
-
-    public String getClientSecret() {
-        return clientSecret;
-    }
-
-    public Object getOAuthURI() {
-        return OAuthURI;
-    }
-
-    public String getTokenParam() {
-        return tokenParam;
-    }
 }

@@ -1,7 +1,7 @@
 package com.squidward.services;
 
 import com.squidward.beans.User;
-import com.squidward.utils.GithubConfig;
+import com.squidward.configs.GithubConfig;
 import com.squidward.utils.Parameters;
 import lombok.extern.slf4j.Slf4j;
 import org.kohsuke.github.GitHub;
@@ -16,7 +16,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
-import java.net.URI;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -35,12 +35,11 @@ public class AuthService {
         this.githubConfig = githubConfig;
     }
 
-    public Parameters login(String code) {
+    public boolean getAccess(String code, String email) {
 
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-
 
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
         map.add(githubConfig.getClientIdParam(), githubConfig.getClientId());
@@ -50,32 +49,36 @@ public class AuthService {
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
 
         ResponseEntity<String> response =
-                restTemplate.postForEntity((URI) githubConfig.getOAuthURI(), request, String.class);
+                restTemplate.postForEntity(githubConfig.getOAuthURI(), request, String.class);
 
         response.getHeaders();
         Parameters parameters = new Parameters(response.getBody());
 
         try {
 
-            GitHub gitHub = GitHub.connectUsingOAuth(parameters.getParameter(githubConfig.getTokenParam()));
+            String oAuthToken = parameters.getParameter(githubConfig.getTokenParam());
+            GitHub gitHub = GitHub.connectUsingOAuth(oAuthToken);
             String username = gitHub.getMyself().getLogin();
-            String email = gitHub.getMyself().getEmail();
 
-            if (!userService.doesUserExist(username)) {
+            Optional<User> userOptional = userService.getUserByEmail(email);
+            if (userOptional.isPresent()) {
 
-                User user = new User();
+                User user = userOptional.get();
                 user.setUsername(username);
-                user.setEmail(email);
+                user.setOAuthToken(oAuthToken);
                 user = userService.saveUser(user);
                 log.debug(user.toString());
+
+            } else {
+                return false;
             }
 
         } catch (IOException | NullPointerException e) {
 
             log.error(e.getMessage());
-            return new Parameters();
+            return false;
         }
 
-        return parameters;
+        return true;
     }
 }

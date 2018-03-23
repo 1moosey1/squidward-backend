@@ -1,14 +1,21 @@
 package com.squidward.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Set;
 
-
 @Entity
 @Table(name="squidward_user")
+@Getter @Setter @ToString
 public class User implements Serializable {
 
     @Id
@@ -19,44 +26,23 @@ public class User implements Serializable {
     @Column(name="user_name")
     private String username;
 
+    @NotNull @Email
     @Column(name="email")
     private String email;
+
+    @NotNull
+    @Size(min=6)
+    @JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
+    @Column(name="password")
+    private String password;
+
+    @JsonIgnore
+    @Column(name="oauth_token")
+    private String oAuthToken;
 
     @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(name="map_of_projects",
             joinColumns= {@JoinColumn(name="user_id")},
             inverseJoinColumns= {@JoinColumn(name="project_id")})
     private Set<Project> projects;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Set<Project> getProjects() {
-        return projects;
-    }
-
-    public void setProjects(Set<Project> projects) {
-        this.projects = projects;
-    }
 }

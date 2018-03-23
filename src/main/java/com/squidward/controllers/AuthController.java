@@ -43,7 +43,6 @@ public class AuthController {
     public ResponseEntity<String> login(HttpServletResponse httpServletResponse,
                                         @RequestParam("code") String code) throws IOException {
 
-
         String tokenParam = githubConfig.getTokenParam();
         Parameters parameters = authService.login(code);
 
