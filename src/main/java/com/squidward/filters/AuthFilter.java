@@ -68,16 +68,18 @@ public class AuthFilter extends OncePerRequestFilter {
             try {
 
                 claims = jwtUtil.parseJWT(jwtToken.split(" ")[1]);
-                if (!userService.doesUserExistByEmail(claims.getSubject())) {
+                String email = claims.getSubject();
+
+                if (!userService.doesUserExistByEmail(email)) {
                     handleUnauthorized(httpServletResponse);
                     return;
                 }
 
-                Optional<String> oAuthTokenOptional = userService.getUserOAuthToken(claims.getSubject());
+                Optional<String> oAuthTokenOptional = userService.getUserOAuthToken(email);
                 if (oAuthTokenOptional.isPresent()) {
                     gitHub = GitHub.connectUsingOAuth(oAuthTokenOptional.get());
                 } else {
-                    handleOAuthRedirect(httpServletResponse, claims.getSubject());
+                    handleOAuthRedirect(httpServletResponse, email);
                     return;
                 }
 

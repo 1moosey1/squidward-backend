@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -20,6 +21,7 @@ public class Project implements Serializable {
     @Column(name="project_id")
     private int id;
 
+    @NotNull
     @Column(name="project_name")
     private String name;
 

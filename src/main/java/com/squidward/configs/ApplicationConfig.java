@@ -22,6 +22,9 @@ public class ApplicationConfig {
     @Value("${url.patterns.redirect.url}")
     private String postOAuthRedirect;
 
+    @Value("${application.webhook}")
+    private String webhook;
+
     @Value("${url.patterns.excluded.urls}")
     private String[] excludedUrls;
 
