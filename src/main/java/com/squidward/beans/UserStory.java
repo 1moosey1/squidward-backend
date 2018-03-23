@@ -19,12 +19,12 @@ public class UserStory implements Serializable {
     @Column(name="us_id")
     private int id;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinColumn(name="uss_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private UserStoryStatus status;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY, cascade = {CascadeType.ALL})
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name="sprint_id")
     private Sprint sprint;
