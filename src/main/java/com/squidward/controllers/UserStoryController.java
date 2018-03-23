@@ -22,7 +22,7 @@ public class UserStoryController {
         return userStoryService.getUserStories(sprintId);
     }
 
-    @PostMapping("/usertory/new")
+    @PostMapping("/userstory/new")
     public UserStory saveUserStory(@RequestBody UserStory userstory) {
         UserStoryStatus userStoryStatus = new UserStoryStatus();
         userStoryStatus.setStatusType("TODO");
