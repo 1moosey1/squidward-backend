@@ -36,7 +36,7 @@ public class User implements Serializable {
     @Column(name="password")
     private String password;
 
-    @JsonIgnore
+    @JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
     @Column(name="oauth_token")
     private String oAuthToken;
 
