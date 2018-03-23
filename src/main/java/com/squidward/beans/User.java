@@ -1,6 +1,5 @@
 package com.squidward.beans;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,7 +35,7 @@ public class User implements Serializable {
     @Column(name="password")
     private String password;
 
-    @JsonIgnore
+    @JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
     @Column(name="oauth_token")
     private String oAuthToken;
 

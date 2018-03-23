@@ -1,7 +1,6 @@
 package com.squidward.controllers;
 
 import com.squidward.beans.Project;
-import com.squidward.beans.User;
 import com.squidward.services.ProjectService;
 import com.squidward.utils.SquidwardHttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -46,7 +45,7 @@ public class ProjectController {
         Iterable<Project> projects = new ArrayList<>();
         GitHub gitHub = ((SquidwardHttpServletRequest) httpServletRequest).getGitHub();
 
-        try{
+        try {
             projects = projectService.getDeveloperProjects(gitHub);
         } catch (IOException e) {
             log.error(e.getMessage());
@@ -57,9 +56,30 @@ public class ProjectController {
     }
 
     @PostMapping(value = "/projects/new")
-    public Project addProject(HttpServletRequest httpServletRequest, @RequestBody Project project) throws IOException {
+    public ResponseEntity<String> addProject(HttpServletRequest httpServletRequest,
+                                             @RequestBody Project project) {
         GitHub gitHub = ((SquidwardHttpServletRequest) httpServletRequest).getGitHub();
-        return projectService.saveProject(project, gitHub);
+
+        try {
+
+            if (!projectService.saveProject(project, gitHub)) {
+
+                return new ResponseEntity<>("Invalid Project / User", HttpStatus.BAD_REQUEST);
+            }
+
+        } catch(IOException e) {
+
+            log.error(e.getMessage());
+            return new ResponseEntity<>("Invalid Github Credentials / Repo Name",
+                    HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>("Webhook created", HttpStatus.OK);
+    }
+
+    @PostMapping(value="/github_webhook", consumes = "text/plain")
+    public void githubWebhook(@RequestBody String payload) {
+        log.debug(payload);
     }
 
     @DeleteMapping(value = "/projects/delete")

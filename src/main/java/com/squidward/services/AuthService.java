@@ -60,18 +60,24 @@ public class AuthService {
             GitHub gitHub = GitHub.connectUsingOAuth(oAuthToken);
             String username = gitHub.getMyself().getLogin();
 
+            User user;
             Optional<User> userOptional = userService.getUserByEmail(email);
+
             if (userOptional.isPresent()) {
 
-                User user = userOptional.get();
-                user.setUsername(username);
-                user.setOAuthToken(oAuthToken);
-                user = userService.saveUser(user);
-                log.debug(user.toString());
+                user = userOptional.get();
+                if (user.getUsername() != null && !user.getUsername().equals(username)) {
+                    return false;
+                }
 
             } else {
+
                 return false;
             }
+
+            user.setOAuthToken(oAuthToken);
+            user = userService.saveUser(user);
+            log.debug(user.toString());
 
         } catch (IOException | NullPointerException e) {
 
