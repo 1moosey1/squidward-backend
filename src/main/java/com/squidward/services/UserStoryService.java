@@ -1,7 +1,6 @@
 package com.squidward.services;
 
 import com.squidward.beans.UserStory;
-import com.squidward.beans.UserStoryStatus;
 import com.squidward.repos.UserStoryRepo;
 import com.squidward.repos.UserStoryStatusRepo;
 import org.springframework.beans.factory.annotation.Autowired;

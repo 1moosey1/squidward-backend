@@ -1,7 +1,6 @@
 package com.squidward.controllers;
 
 import com.squidward.beans.Project;
-import com.squidward.beans.User;
 import com.squidward.services.ProjectService;
 import com.squidward.utils.SquidwardHttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
