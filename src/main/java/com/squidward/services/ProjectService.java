@@ -66,6 +66,11 @@ public class ProjectService {
         Optional<User> userOptional = userRepo.getUserByUsername(username);
         if (!userOptional.isPresent() || !hasValidFields(project) ||
                 projectRepo.existsByNameAndOwnerUsername(project.getName(), username)) {
+
+            log.debug(Boolean.toString(!userOptional.isPresent()));
+            log.debug(Boolean.toString(!hasValidFields(project)));
+            log.debug(Boolean.toString(
+                    projectRepo.existsByNameAndOwnerUsername(project.getName(), username)));
             return false;
         }
 
