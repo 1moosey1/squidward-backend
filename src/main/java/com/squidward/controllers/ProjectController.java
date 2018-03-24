@@ -77,10 +77,14 @@ public class ProjectController {
         return new ResponseEntity<>("Webhook created", HttpStatus.OK);
     }
 
-    @PostMapping(value="/github_webhook", consumes = "text/plain")
-    public void githubWebhook(@RequestBody String payload) {
-        log.debug(payload);
-    }
+//    @PostMapping(value="/github_webhook")
+//    public void githubWebhook(@RequestBody PushPayload pushPayload) {
+//
+//        for (Commit commit : pushPayload.getCommits()) {
+//            log.debug(commit.getAuthor().getName());
+//            log.debug(commit.);
+//        }
+//    }
 
     @DeleteMapping(value = "/projects/delete")
     public void deleteProject(@RequestParam("projectId") int projectId) {

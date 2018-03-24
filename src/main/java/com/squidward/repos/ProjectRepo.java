@@ -9,8 +9,8 @@ import java.util.Optional;
 @Repository
 public interface ProjectRepo extends CrudRepository<Project, Integer> {
 
-    boolean existsByName(String name);
-    Optional<Project> findByName(String name);
+    boolean existsByNameAndOwnerUsername(String name, String username);
+    Optional<Project> findByNameAndOwnerUsername(String name, String username);
     Iterable<Project> findAllByOwnerUsername(String username);
     Iterable<Project> findAllByUsersUsername(String username);
 }
