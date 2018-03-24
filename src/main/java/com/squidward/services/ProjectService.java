@@ -5,6 +5,7 @@ import com.squidward.beans.User;
 import com.squidward.configs.ApplicationConfig;
 import com.squidward.repos.ProjectRepo;
 import com.squidward.repos.UserRepo;
+import com.squidward.utils.GithubPayload;
 import com.squidward.utils.ValidatorFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.kohsuke.github.GHEvent;
@@ -99,6 +100,11 @@ public class ProjectService {
 
     public void deleteProject(int projectId) {
         projectRepo.deleteById(projectId);
+    }
+
+    // TODO: Finish webhook processing
+    public void processWebhook(GithubPayload githubPayload) {
+
     }
 
     private boolean hasValidFields(Project project) {

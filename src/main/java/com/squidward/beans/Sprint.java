@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -22,6 +23,7 @@ public class Sprint implements Serializable {
     @Column(name="sprint_number")
     private int number;
 
+    @NotNull
     @ManyToOne(fetch=FetchType.LAZY)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name="project_id")
@@ -30,9 +32,11 @@ public class Sprint implements Serializable {
     @Column(name="release")
     private boolean release;
 
+    @NotNull
     @Column(name="start_date")
     private Date startDate;
 
+    @NotNull
     @Column(name="end_date")
     private Date endDate;
 }
