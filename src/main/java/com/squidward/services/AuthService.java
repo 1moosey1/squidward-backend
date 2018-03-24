@@ -75,6 +75,7 @@ public class AuthService {
                 return false;
             }
 
+            user.setUsername(username);
             user.setOAuthToken(oAuthToken);
             user = userService.saveUser(user);
             log.debug(user.toString());
