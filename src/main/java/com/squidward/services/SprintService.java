@@ -5,6 +5,8 @@ import com.squidward.repos.SprintRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class SprintService {
 
@@ -20,6 +22,8 @@ public class SprintService {
     }
 
     public Sprint saveSprint(Sprint sprint) {
+        Date date = new Date(System.currentTimeMillis());
+        sprint.setStartDate(date);
         return sprintRepo.save(sprint);
     }
 }
