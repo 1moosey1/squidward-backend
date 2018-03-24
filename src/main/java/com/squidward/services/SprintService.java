@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.Optional;
 
+import java.util.Date;
+
 @Service
 public class SprintService {
 
@@ -41,6 +43,8 @@ public class SprintService {
     }
 
     public Sprint saveSprint(Sprint sprint) {
+        Date date = new Date(System.currentTimeMillis());
+        sprint.setStartDate(date);
         return sprintRepo.save(sprint);
     }
 
