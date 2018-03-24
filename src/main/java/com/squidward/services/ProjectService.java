@@ -58,16 +58,14 @@ public class ProjectService {
         return projectRepo.findAllByUsersUsername(username);
     }
 
+    // TODO: Set repo hook to use application/JSON
     public boolean saveProject(Project project, GitHub gitHub) throws IOException {
         String username = gitHub.getMyself().getLogin();
 
+        // Check for invalid user or project and existing repo hook
         Optional<User> userOptional = userRepo.getUserByUsername(username);
-        Optional<Project> projectOptional = projectRepo.findByName(project.getName());
-
-        if (!userOptional.isPresent() ||
-            !hasValidFields(project) ||
-            (projectOptional.isPresent() &&
-             projectOptional.get().getOwner().getUsername().equals(username))) {
+        if (!userOptional.isPresent() || !hasValidFields(project) ||
+                projectRepo.existsByNameAndOwnerUsername(project.getName(), username)) {
             return false;
         }
 
