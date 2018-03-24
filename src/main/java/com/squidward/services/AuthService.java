@@ -59,6 +59,7 @@ public class AuthService {
             String oAuthToken = parameters.getParameter(githubConfig.getTokenParam());
             GitHub gitHub = GitHub.connectUsingOAuth(oAuthToken);
             String username = gitHub.getMyself().getLogin();
+            log.debug("found GitHub username: " + username);
 
             User user;
             Optional<User> userOptional = userService.getUserByEmail(email);
