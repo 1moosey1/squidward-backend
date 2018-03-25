@@ -49,4 +49,12 @@ public class UserStory implements Serializable {
     @Null
     @Column(name="done_date")
     private Date doneDate;
+
+    @Null
+    @Column(name="start_url")
+    private String startUrl;
+
+    @Null
+    @Column(name="done_url")
+    private String doneUrl;
 }

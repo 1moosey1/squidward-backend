@@ -18,6 +18,7 @@ public class GithubPayload {
 
         private String id;
         private String message;
+        private String url;
     }
 
     @Getter @Setter
