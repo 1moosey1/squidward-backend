@@ -19,8 +19,7 @@ public class Sprint implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="sprint_id")
     private int id;
-
-//
+    
     @Column(name="sprint_number")
     private int number;
 
