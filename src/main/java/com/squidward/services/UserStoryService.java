@@ -54,7 +54,7 @@ public class UserStoryService {
         String username = gitHub.getMyself().getLogin();
 
         if (!hasValidFields(userStory) ||
-                sprintRepo.existsByIdAndProjectOwnerUsername(userStory.getSprint().getId(), username)) {
+                !sprintRepo.existsByIdAndProjectOwnerUsername(userStory.getSprint().getId(), username)) {
             return false;
         }
 
