@@ -67,7 +67,7 @@ public class UserStoryService {
         }
 
         userStory.setStatus(userStoryStatusRepo.findByStatusType(StatusType.TODO.toString()));
-        userStoryRepo.save(userStory);
+        userStory = userStoryRepo.save(userStory);
 
         String startTag = "story-" + userStory.getSprint().getId()
                 + "-" + userStory.getId() + "-s";
@@ -76,7 +76,7 @@ public class UserStoryService {
 
         userStory.setStartTag(startTag);
         userStory.setDoneTag(doneTag);
-        // userStoryRepo.save(userStory);
+        userStoryRepo.save(userStory);
 
         return true;
     }
