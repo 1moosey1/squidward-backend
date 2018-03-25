@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface UserStoryRepo extends CrudRepository<UserStory, Integer> {
 
     Iterable<UserStory> findAllBySprintId(int sprintId);
+    int countBySprintId(int sprintId);
 }

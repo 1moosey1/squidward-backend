@@ -71,6 +71,10 @@ public class ProjectController {
             if (!projectService.saveProject(project, gitHub)) {
 
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+            } else {
+
+                return new ResponseEntity<>(HttpStatus.OK);
             }
 
         } catch(IOException e) {
@@ -78,8 +82,6 @@ public class ProjectController {
             log.error(e.getMessage());
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping(value="/github_webhook")

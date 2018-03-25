@@ -64,6 +64,10 @@ public class SprintController {
             if (!sprintService.saveSprint(sprint, gitHub)) {
 
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+            } else {
+
+                return new ResponseEntity<>(HttpStatus.OK);
             }
 
         } catch(IOException e) {
@@ -71,7 +75,5 @@ public class SprintController {
             log.debug(e.getMessage());
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
