@@ -53,7 +53,25 @@ public class SprintController {
     }
 
     @PostMapping(value = "/sprint/new")
-    public Sprint addSprint(@RequestBody Sprint sprint) {
-        return sprintService.saveSprint(sprint);
+    public ResponseEntity<String> addSprint(
+            HttpServletRequest httpServletRequest,
+            @RequestBody Sprint sprint) {
+
+        GitHub gitHub = ((SquidwardHttpServletRequest) httpServletRequest).getGitHub();
+
+        try {
+
+            if (!sprintService.saveSprint(sprint, gitHub)) {
+
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+        } catch(IOException e) {
+
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
