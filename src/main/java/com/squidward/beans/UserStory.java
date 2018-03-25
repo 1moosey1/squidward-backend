@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.Null;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -41,9 +42,11 @@ public class UserStory implements Serializable {
     @Column(name="start_tag")
     private String startTag;
 
+    @Null
     @Column(name="start_date")
     private Date startDate;
 
+    @Null
     @Column(name="done_date")
     private Date doneDate;
 }

@@ -5,6 +5,7 @@ import com.squidward.beans.User;
 import com.squidward.configs.ApplicationConfig;
 import com.squidward.repos.ProjectRepo;
 import com.squidward.repos.UserRepo;
+import com.squidward.utils.GithubPayload;
 import com.squidward.utils.ValidatorFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.kohsuke.github.GHEvent;
@@ -58,7 +59,6 @@ public class ProjectService {
         return projectRepo.findAllByUsersUsername(username);
     }
 
-    // TODO: Set repo hook to use application/JSON
     public boolean saveProject(Project project, GitHub gitHub) throws IOException {
         String username = gitHub.getMyself().getLogin();
 
@@ -80,8 +80,13 @@ public class ProjectService {
         Collection<GHEvent> subscriptions = new ArrayList<>();
         subscriptions.add(GHEvent.PUSH);
 
+        Map<String, String> subscriptionConfig = new HashMap<>();
         URL url = new URL(appConfig.getWebhook());
-        ghRepository.createWebHook(url, subscriptions);
+
+        subscriptionConfig.put("url", url.toExternalForm());
+        subscriptionConfig.put("content_type", "application/json");
+
+        ghRepository.createHook("web", subscriptionConfig, subscriptions, true);
 
         log.debug("Webhook created for " + ghRepository.getName());
 
@@ -99,6 +104,11 @@ public class ProjectService {
 
     public void deleteProject(int projectId) {
         projectRepo.deleteById(projectId);
+    }
+
+    // TODO: Finish webhook processing
+    public void processWebhook(GithubPayload githubPayload) {
+
     }
 
     private boolean hasValidFields(Project project) {
