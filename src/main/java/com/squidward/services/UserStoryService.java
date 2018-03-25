@@ -1,8 +1,10 @@
 package com.squidward.services;
 
+import com.squidward.beans.StatusType;
 import com.squidward.beans.UserStory;
 import com.squidward.repos.SprintRepo;
 import com.squidward.repos.UserStoryRepo;
+import com.squidward.repos.UserStoryStatusRepo;
 import com.squidward.utils.ValidatorFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.kohsuke.github.GitHub;
@@ -20,12 +22,18 @@ import java.util.Set;
 public class UserStoryService {
 
     private UserStoryRepo userStoryRepo;
+    private UserStoryStatusRepo userStoryStatusRepo;
     private SprintRepo sprintRepo;
     private ValidatorFactory validatorFactory;
 
     @Autowired
     public void setUserStoryRepo(UserStoryRepo userStoryRepo) {
         this.userStoryRepo = userStoryRepo;
+    }
+
+    @Autowired
+    public void setUserStoryStatusRepo(UserStoryStatusRepo userStoryStatusRepo) {
+        this.userStoryStatusRepo = userStoryStatusRepo;
     }
 
     @Autowired
@@ -58,7 +66,9 @@ public class UserStoryService {
             return false;
         }
 
+        userStory.setStatus(userStoryStatusRepo.findByStatusType(StatusType.TODO.toString()));
         userStoryRepo.save(userStory);
+
         String startTag = "story-" + userStory.getSprint().getId()
                 + "-" + userStory.getId() + "-s";
         String doneTag = "story-" + userStory.getSprint().getId()
