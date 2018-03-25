@@ -59,7 +59,6 @@ public class ProjectService {
         return projectRepo.findAllByUsersUsername(username);
     }
 
-    // TODO: Set repo hook to use application/JSON
     public boolean saveProject(Project project, GitHub gitHub) throws IOException {
         String username = gitHub.getMyself().getLogin();
 
@@ -81,8 +80,13 @@ public class ProjectService {
         Collection<GHEvent> subscriptions = new ArrayList<>();
         subscriptions.add(GHEvent.PUSH);
 
+        Map<String, String> subscriptionConfig = new HashMap<>();
         URL url = new URL(appConfig.getWebhook());
-        ghRepository.createWebHook(url, subscriptions);
+
+        subscriptionConfig.put("url", url.toExternalForm());
+        subscriptionConfig.put("content_type", "application/json");
+
+        ghRepository.createHook("web", subscriptionConfig, subscriptions, true);
 
         log.debug("Webhook created for " + ghRepository.getName());
 
