@@ -87,20 +87,24 @@ public class SprintService {
         Sprint sprint = sprintOptional.get();
 
         int sum = userStoryRepo.getOverallPointSum(sprintId), sumOnDay;
-        Map<Date, Integer> dateDifficultyMap = new HashMap<>();
+        List<Date> dates = new ArrayList<>();
+        List<Integer> points = new ArrayList<>();
 
         burnDownData.setSum(sum);
-        burnDownData.setDateDifficultyMap(dateDifficultyMap);
+        burnDownData.setDates(dates);
+        burnDownData.setPoints(points);
 
         Date startDate = sprint.getStartDate();
         Date endDate = sprint.getEndDate();
 
         while (endDate.compareTo(startDate) >= 0) {
 
+            log.debug(startDate.toString());
             sumOnDay = userStoryRepo.getDoneDatePointSum(sprintId, startDate);
             sum -= sumOnDay;
 
-            dateDifficultyMap.put((Date) startDate.clone(), sum);
+            dates.add((Date) startDate.clone());
+            points.add(sum);
             startDate = DateUtils.addDays(startDate, 1);
         }
 
