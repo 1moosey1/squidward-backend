@@ -43,10 +43,12 @@ public class UserStory implements Serializable {
     private String startTag;
 
     @Null
+    @Temporal(TemporalType.DATE)
     @Column(name="start_date")
     private Date startDate;
 
     @Null
+    @Temporal(TemporalType.DATE)
     @Column(name="done_date")
     private Date doneDate;
 
