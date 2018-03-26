@@ -96,7 +96,7 @@ public class ProjectService {
         URL url = new URL(appConfig.getWebhook());
 
         subscriptionConfig.put("url", url.toExternalForm());
-        subscriptionConfig.put("content_type", "application/json");
+        subscriptionConfig.put("content_type", "json");
 
         ghRepository.createHook("web", subscriptionConfig, subscriptions, true);
 
