@@ -97,7 +97,7 @@ public class SprintService {
 
         while (endDate.compareTo(startDate) >= 0) {
 
-            sumOnDay = userStoryRepo.getDoneDatePointSum(sprintId, startDate);
+            sumOnDay = userStoryRepo.getDoneDatePointSum(sprintId, (Date) startDate.clone());
             sum -= sumOnDay;
 
             dateDifficultyMap.put((Date) startDate.clone(), sum);
