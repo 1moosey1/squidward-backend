@@ -7,6 +7,7 @@ import com.squidward.repos.SprintRepo;
 import com.squidward.repos.UserStoryRepo;
 import com.squidward.utils.ValidatorFactory;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.time.DateUtils;
 import org.kohsuke.github.GitHub;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
@@ -86,7 +87,7 @@ public class SprintService {
         Sprint sprint = sprintOptional.get();
 
         int sum = userStoryRepo.getOverallPointSum(sprintId), sumOnDay;
-        Map<String, Integer> dateDifficultyMap = new HashMap<>();
+        Map<Date, Integer> dateDifficultyMap = new HashMap<>();
 
         burnDownData.setSum(sum);
         burnDownData.setDateDifficultyMap(dateDifficultyMap);
@@ -99,13 +100,8 @@ public class SprintService {
             sumOnDay = userStoryRepo.getDoneDatePointSum(sprintId, startDate);
             sum -= sumOnDay;
 
-            dateDifficultyMap.put(startDate.toString(), sum);
-
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(startDate);
-            calendar.add(Calendar.DATE, 1);
-
-            startDate = calendar.getTime();
+            dateDifficultyMap.put((Date) startDate.clone(), sum);
+            startDate = DateUtils.addDays(startDate, 1);
         }
 
         return Optional.of(burnDownData);
