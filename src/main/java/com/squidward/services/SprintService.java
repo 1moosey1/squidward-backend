@@ -100,8 +100,12 @@ public class SprintService {
             sum -= sumOnDay;
 
             dateDifficultyMap.put(startDate, sum);
-            LocalDateTime ldt = LocalDateTime.from(startDate.toInstant()).plusDays(1);
-            startDate = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(startDate);
+            calendar.add(Calendar.DATE, 1);
+
+            startDate = calendar.getTime();
         }
 
         return Optional.of(burnDownData);
