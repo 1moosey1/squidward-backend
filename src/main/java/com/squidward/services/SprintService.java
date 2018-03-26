@@ -99,7 +99,11 @@ public class SprintService {
 
         while (endDate.compareTo(startDate) >= 0) {
 
+            log.debug("Searching: " + startDate.toString());
             sumOnDay = userStoryRepo.getDoneDatePointSum(sprintId, (Date) startDate.clone());
+            log.debug("Found: " + sumOnDay);
+            log.debug("Done Searching: " + startDate.toString());
+
             sum -= sumOnDay;
 
             dates.add((Date) startDate.clone());
