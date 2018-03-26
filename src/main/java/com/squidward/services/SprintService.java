@@ -86,7 +86,7 @@ public class SprintService {
         Sprint sprint = sprintOptional.get();
 
         int sum = userStoryRepo.getOverallPointSum(sprintId), sumOnDay;
-        Map<Date, Integer> dateDifficultyMap = new HashMap<>();
+        Map<String, Integer> dateDifficultyMap = new HashMap<>();
 
         burnDownData.setSum(sum);
         burnDownData.setDateDifficultyMap(dateDifficultyMap);
@@ -99,7 +99,7 @@ public class SprintService {
             sumOnDay = userStoryRepo.getDoneDatePointSum(sprintId, startDate);
             sum -= sumOnDay;
 
-            dateDifficultyMap.put(startDate, sum);
+            dateDifficultyMap.put(startDate.toString(), sum);
 
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(startDate);
