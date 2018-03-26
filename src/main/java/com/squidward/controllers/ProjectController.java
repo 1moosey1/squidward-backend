@@ -85,8 +85,14 @@ public class ProjectController {
     }
 
     @PostMapping(value="/github_webhook")
-    public void githubWebhook(@RequestBody GithubPayload pushPayload) {
-        projectService.processWebhook(pushPayload);
+    public void githubWebhook(
+            HttpServletRequest httpServletRequest,
+            @RequestBody GithubPayload pushPayload) {
+
+        String strayHeader = httpServletRequest.getHeader("X-Github-Event");
+        if (strayHeader == null || !strayHeader.equals("ping")) {
+            projectService.processWebhook(pushPayload);
+        }
     }
 
     @DeleteMapping(value = "/projects/delete")
