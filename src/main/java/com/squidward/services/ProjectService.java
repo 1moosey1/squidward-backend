@@ -2,10 +2,7 @@ package com.squidward.services;
 
 import com.squidward.beans.*;
 import com.squidward.configs.ApplicationConfig;
-import com.squidward.repos.ProjectRepo;
-import com.squidward.repos.UserRepo;
-import com.squidward.repos.UserStoryRepo;
-import com.squidward.repos.UserStoryStatusRepo;
+import com.squidward.repos.*;
 import com.squidward.utils.GithubPayload;
 import com.squidward.utils.ValidatorFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -28,8 +25,8 @@ import java.util.regex.Pattern;
 public class ProjectService {
 
     private ApplicationConfig appConfig;
-    private ProjectRepo projectRepo;
     private UserRepo userRepo;
+    private ProjectRepo projectRepo;
     private UserStoryRepo userStoryRepo;
     private UserStoryStatusRepo userStoryStatusRepo;
     private ValidatorFactory validatorFactory;
@@ -40,13 +37,13 @@ public class ProjectService {
     }
 
     @Autowired
-    public void setProjectRepo(ProjectRepo projectRepo) {
-        this.projectRepo = projectRepo;
+    public void setUserRepo(UserRepo userRepo) {
+        this.userRepo = userRepo;
     }
 
     @Autowired
-    public void setUserRepo(UserRepo userRepo) {
-        this.userRepo = userRepo;
+    public void setProjectRepo(ProjectRepo projectRepo) {
+        this.projectRepo = projectRepo;
     }
 
     @Autowired

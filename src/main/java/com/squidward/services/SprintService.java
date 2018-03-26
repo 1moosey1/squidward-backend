@@ -1,19 +1,23 @@
 package com.squidward.services;
 
+import com.squidward.beans.BurnDownData;
 import com.squidward.beans.Sprint;
 import com.squidward.repos.ProjectRepo;
 import com.squidward.repos.SprintRepo;
+import com.squidward.repos.UserStoryRepo;
 import com.squidward.utils.ValidatorFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.kohsuke.github.GitHub;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import java.io.IOException;
-import java.util.Optional;
-import java.util.Set;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -21,6 +25,7 @@ public class SprintService {
 
     private SprintRepo sprintRepo;
     private ProjectRepo projectRepo;
+    private UserStoryRepo userStoryRepo;
     private ValidatorFactory validatorFactory;
 
     @Autowired
@@ -31,6 +36,11 @@ public class SprintService {
     @Autowired
     public void setProjectRepo(ProjectRepo projectRepo) {
         this.projectRepo = projectRepo;
+    }
+
+    @Autowired
+    public void setUserStoryRepo(UserStoryRepo userStoryRepo) {
+        this.userStoryRepo = userStoryRepo;
     }
 
     @Autowired
@@ -60,6 +70,41 @@ public class SprintService {
 
         sprintRepo.save(sprint);
         return true;
+    }
+
+    public Optional<BurnDownData> burnDownChart(int sprintId, GitHub gitHub) throws IOException {
+        String username = gitHub.getMyself().getLogin();
+
+        Optional<Sprint> sprintOptional =
+                sprintRepo.findByIdAndProjectOwnerUsername(sprintId, username);
+
+        if (!sprintOptional.isPresent()) {
+            return Optional.empty();
+        }
+
+        BurnDownData burnDownData = new BurnDownData();
+        Sprint sprint = sprintOptional.get();
+
+        int sum = userStoryRepo.getOverallPointSum(sprintId), sumOnDay;
+        Map<Date, Integer> dateDifficultyMap = new HashMap<>();
+
+        burnDownData.setSum(sum);
+        burnDownData.setDateDifficultyMap(dateDifficultyMap);
+
+        Date startDate = sprint.getStartDate();
+        Date endDate = sprint.getEndDate();
+
+        while (endDate.compareTo(startDate) >= 0) {
+
+            sumOnDay = userStoryRepo.getDoneDatePointSum(sprintId, startDate);
+            sum -= sumOnDay;
+
+            dateDifficultyMap.put(startDate, sum);
+            LocalDateTime ldt = LocalDateTime.from(startDate.toInstant()).plusDays(1);
+            startDate = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
+        }
+
+        return Optional.of(burnDownData);
     }
 
     private boolean hasValidFields(Sprint sprint) {

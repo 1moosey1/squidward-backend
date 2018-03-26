@@ -1,5 +1,6 @@
 package com.squidward.controllers;
 
+import com.squidward.beans.BurnDownData;
 import com.squidward.beans.Sprint;
 import com.squidward.services.SprintService;
 import com.squidward.utils.SquidwardHttpServletRequest;
@@ -68,6 +69,32 @@ public class SprintController {
             } else {
 
                 return new ResponseEntity<>(HttpStatus.OK);
+            }
+
+        } catch(IOException e) {
+
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+    }
+
+    @GetMapping(value = "/sprint/burndown/{sprintid}")
+    public ResponseEntity<BurnDownData> burnDownChart(
+            HttpServletRequest httpServletRequest,
+            @PathVariable("sprintid") int sprintId) {
+
+        GitHub gitHub = ((SquidwardHttpServletRequest) httpServletRequest).getGitHub();
+
+        try {
+
+            Optional<BurnDownData> burnDownDataOptional = sprintService.burnDownChart(sprintId, gitHub);
+            if (!burnDownDataOptional.isPresent()) {
+
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+
+            } else {
+
+                return new ResponseEntity<>(burnDownDataOptional.get(), HttpStatus.OK);
             }
 
         } catch(IOException e) {
