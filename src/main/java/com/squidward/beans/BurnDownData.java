@@ -4,11 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.Map;
+import java.util.List;
 
 @Getter @Setter
 public class BurnDownData {
 
     private int sum;
-    private Map<Date, Integer> dateDifficultyMap;
+    List<Date> dates;
+    List<Integer> points;
 }
