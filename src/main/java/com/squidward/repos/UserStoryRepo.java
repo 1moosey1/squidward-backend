@@ -19,6 +19,9 @@ public interface UserStoryRepo extends CrudRepository<UserStory, Integer> {
     @Query("select coalesce(sum(difficulty), 0) from UserStory where sprint.id = ?1")
     int getOverallPointSum(int sprintId);
 
-    @Query("select coalesce(sum(difficulty), 0) from UserStory where sprint.id = ?1 and doneDate = ?2")
+    @Query(value = "select coalesce(sum(difficulty), 0) " +
+            "from user_story " +
+            "where sprint_id = ?1 and done_date = ?2::date",
+            nativeQuery = true)
     int getDoneDatePointSum(int sprintId, Date doneDate);
 }
